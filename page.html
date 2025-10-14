@@ -44,6 +44,7 @@
         text = text.replace(/:::note\s([\s\S]*?):::/g, '<div class="note">$1</div>');
         text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
         text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
+        text = text.replace(/\$\$([\s\S]+?)\$\$/g, '<div>$$$1$$</div>');
 
         // Markdown → HTML
         contentDiv.innerHTML = marked.parse(text);
