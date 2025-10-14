@@ -22,6 +22,9 @@ body {
   padding: 30px;
   overflow-y: auto;
 }
+#main.content {
+    padding: 30px
+}
 
 #graph {
   width: 100%;

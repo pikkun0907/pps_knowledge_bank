@@ -12,31 +12,42 @@
   <div id="content">Loading...</div>
 
   <script>
-    // --- サイドバー読込 ---
+    // --- サイドバー読み込み ---
     fetch('sidebar.html')
       .then(res => res.text())
       .then(html => document.getElementById('sidebar').innerHTML = html);
 
-    // --- URLパラメータからtopicを取得 ---
+    // --- URLパラメータから topic を取得 ---
     const params = new URLSearchParams(window.location.search);
-    const topic = params.get('topic');
+    const topic = params.get('topic') || 'notyet';
+    document.getElementById('topic-title').textContent = topic.toUpperCase();
 
-    // --- 対応するMarkdownファイルを読み込み ---
+    // --- Markdownファイルを読み込む ---
     const contentDiv = document.getElementById('content');
     const filePath = `pages/${topic}.md`;
 
     fetch(filePath)
       .then(response => {
         if (!response.ok) {
-          // ファイルが存在しない場合 → notyet.mdにリダイレクト
+          // 存在しない場合は notyet.md
           return fetch('pages/notyet.md');
         }
         return response;
       })
       .then(response => response.text())
       .then(text => {
-        // Markdown → HTML変換（marked.jsを利用）
+        // :::note / tip / warning を div に変換
+        text = text.replace(/:::note\s([\s\S]*?):::/g, '<div class="note">$1</div>');
+        text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
+        text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
+
+        // Markdown → HTML
         contentDiv.innerHTML = marked.parse(text);
+
+        // MathJaxで数式レンダリング
+        if (window.MathJax) {
+          MathJax.typesetPromise();
+        }
       })
       .catch(err => {
         console.error(err);
