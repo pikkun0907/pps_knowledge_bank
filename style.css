@@ -1,142 +1,71 @@
-/* ===== レイアウト全体 ===== */
 body {
   margin: 0;
-  padding: 0;
   display: flex;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #f7f8fa;
-  color: #333;
 }
 
-/* ===== サイドバー全体 ===== */
+/* 左サイドバー */
 #sidebar {
   width: 280px;
-  background-color: #ffffff;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  background: #fff;
   padding: 20px;
-  overflow-y: auto;
   height: 100vh;
+  overflow-y: auto;
   position: fixed;
   top: 0;
   left: 0;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.05);
 }
 
-/* ===== メインコンテンツ側 ===== */
+/* メインコンテンツ */
 #main {
-  flex-grow: 1;
-  margin-left: 280px;
+  margin-left: 300px;
   padding: 30px;
+  flex-grow: 1;
 }
 
-/* ===== 見出し ===== */
-h2 {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #222;
-  border-left: 4px solid #0078ff;
-  padding-left: 10px;
-}
-
-/* ===== リスト ===== */
+/* リスト */
 ul {
   list-style: none;
   padding-left: 0;
-  margin: 0;
 }
-
 li {
   margin: 5px 0;
 }
 
-/* ===== リンク ===== */
+/* リンク */
 a {
   color: #444;
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 }
+a:hover { color: #0078ff; }
 
-a:hover {
-  color: #0078ff;
-  text-decoration: underline;
-}
+/* 階層構造 */
+li.has-sub > ul { display: none; }
+li.has-sub.open > ul { display: block; }
+ul ul { margin-left: 1rem; border-left: 2px solid #e0e0e0; padding-left: 0.8rem; }
 
-/* ===== 階層構造 ===== */
-ul ul {
-  margin-left: 0.8rem;
-  border-left: 2px solid #e0e0e0;
-  padding-left: 0.8rem;
-}
-
-/* ===== 最上位カテゴリ ===== */
+/* カード風 */
 ul > li {
-  background-color: #ffffff;
+  background: #fff;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   padding: 10px 15px;
   margin: 10px 0;
-  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   cursor: pointer;
 }
-
 ul > li:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   transform: translateY(-2px);
 }
 
-/* ===== 折りたたみ（クリック対応用） ===== */
-ul ul {
-  display: none;
-}
+/* 現在のページ */
+a.active { color: #0078ff; font-weight: 600; border-bottom: 2px solid #0078ff; }
 
-ul li.open > ul {
-  display: block;
-}
-
-li.has-sub > ul {
-  display: none;
-  margin-left: 0.8rem;
-  border-left: 2px solid #e0e0e0;
-}
-
-/* openクラスで展開 */
-li.has-sub.open > ul {
-  display: block;
-}
-
-/* ===== スクロール対応 ===== */
-#sidebar {
-  overflow-y: auto;
-}
-
-/* ===== ハイライト（現在のページ） ===== */
-a.active {
-  color: #0078ff;
-  font-weight: 600;
-  border-bottom: 2px solid #0078ff;
-}
-
-/* ===== メディア対応（スマホ） ===== */
-@media (max-width: 800px) {
-  #sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    box-shadow: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  #main {
-    margin-left: 0;
-    padding: 20px;
-  }
-
-  ul > li {
-    padding: 8px 10px;
-  }
-
-  h2 {
-    font-size: 1.1rem;
-  }
+/* スマホ */
+@media(max-width:800px){
+  #sidebar{position:relative;width:100%;height:auto;box-shadow:none;border-bottom:1px solid #ddd;}
+  #main{margin-left:0;padding:20px;}
 }

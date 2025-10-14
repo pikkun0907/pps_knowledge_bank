@@ -103,20 +103,18 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // サブリストを持つliだけを取得
-  const liWithSub = document.querySelectorAll("#sidebar li > ul");
+  // サブリストを持つ li にクラス付与
+  const subMenus = document.querySelectorAll("#sidebar li > ul");
+  subMenus.forEach(sub => {
+    const parent = sub.parentElement;
+    parent.classList.add("has-sub");
 
-  liWithSub.forEach(subUl => {
-    const parentLi = subUl.parentElement;
-    parentLi.classList.add("has-sub"); // CSS用にクラス追加
-
-    // li全体ではなくテキスト部分だけクリック対象にする
-    parentLi.firstChild.addEventListener("click", (e) => {
-      // aタグは無視
+    // 親のテキスト部分をクリックで開閉
+    const toggleTarget = parent.firstChild;
+    toggleTarget.addEventListener("click", e => {
       if (e.target.tagName.toLowerCase() === "a") return;
-
-      e.stopPropagation(); // 親にバブらないように
-      parentLi.classList.toggle("open");
+      e.stopPropagation();
+      parent.classList.toggle("open");
     });
   });
 });
