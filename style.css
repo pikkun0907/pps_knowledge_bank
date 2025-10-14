@@ -2,22 +2,22 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: #f7f8fa;
-  display: flex; /* 横並び */
+  display: flex;
 }
 
-/* サイドバー */
+
 #sidebar {
   width: 280px;
   background: #fff;
   padding: 20px;
   overflow-y: auto;
   box-shadow: 2px 0 8px rgba(0,0,0,0.05);
-  flex-shrink: 0; /* 固定幅 */
+  flex-shrink: 0;
 }
 
-/* メインコンテンツ */
+
 #main {
-  flex-grow: 1;        /* 残り幅を自動で使う */
+  flex-grow: 1;        
   padding: 30px;
   overflow-y: auto;
 }
@@ -38,7 +38,7 @@ body {
 
 .note, .tip, .warning {
   border-left: 6px solid;
-  padding: 15px 20px 15px 50px; /* 左側に余白を作る */
+  padding: 15px 20px 15px 50px; 
   margin: 20px 0;
   border-radius: 12px;
   font-size: 0.95rem;
@@ -52,13 +52,13 @@ body {
 .tip { border-color: #28a745; background: linear-gradient(90deg, #e6ffe6, #ffffff); }
 .warning { border-color: #dc3545; background: linear-gradient(90deg, #ffe6e6, #ffffff); }
 
-/* 左端にアイコンを追加 */
+
 .note::before,
 .tip::before,
 .warning::before {
-  content: "\f129"; /* Font Awesome のアイコンコード例 */
-  font-family: "Font Awesome 5 Free"; /* Font Awesome 5 Free を使う場合 */
-  font-weight: 900; /* Solid アイコン */
+  content: "\f129"; 
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900; 
   position: absolute;
   left: 20px;
   top: 50%;
@@ -66,7 +66,7 @@ body {
   font-size: 1.2rem;
 }
 
-/* アイコンカラー */
+
 .note::before { color: #0078ff; content: "\f05a"; }     /* info-circle */
 .tip::before { color: #28a745; content: "\f059"; }      /* check-circle */
 .warning::before { color: #dc3545; content: "\f071"; }  /* exclamation-triangle */

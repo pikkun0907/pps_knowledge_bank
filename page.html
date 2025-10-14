@@ -17,31 +17,31 @@
   </div>
 
   <script>
-    // --- サイドバー読み込み ---
+    // import sidebar
     fetch('sidebar.html')
       .then(res => res.text())
       .then(html => document.getElementById('sidebar').innerHTML = html);
 
-    // --- URLパラメータから topic を取得 ---
+    // get topic from URL
     const params = new URLSearchParams(window.location.search);
     const topic = params.get('topic') || 'notyet';
     document.getElementById('topic-title').textContent = topic.toUpperCase();
 
-    // --- Markdownファイルを読み込む ---
+    // fetch markdown
     const contentDiv = document.getElementById('content');
     const filePath = `pages/${topic}.md`;
 
     fetch(filePath)
       .then(response => {
         if (!response.ok) {
-          // 存在しない場合は notyet.md
+          // if the file does not exist notyet.md
           return fetch('pages/notyet.md');
         }
         return response;
       })
       .then(response => response.text())
       .then(text => {
-        // :::note / tip / warning を div に変換
+        // :::note / tip / warning 
         text = text.replace(/:::note\s([\s\S]*?):::/g, '<div class="note">$1</div>');
         text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
         text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
@@ -54,12 +54,12 @@
         // Markdown → HTML
         let html = marked.parse(text);
 
-        // 置換して MathJax に戻す
+        // mathjax
         html = html.replace(/@@MATHBLOCK(\d+)@@/g, (match, idx) => `$$${mathBlocks[idx]}$$`);
 
         contentDiv.innerHTML = html;
 
-        // MathJaxで数式レンダリング
+        // MathJax render
         if(window.MathJax) {
           MathJax.typesetPromise()
             .then(() => console.log("MathJax rendered"))
@@ -72,7 +72,7 @@
       });
   </script>
 
-  <!-- marked.jsを読み込み（CDN） -->
+
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>

@@ -103,13 +103,13 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // サブリストを持つ li にクラス付与
+
   const subMenus = document.querySelectorAll("#sidebar li > ul");
   subMenus.forEach(sub => {
     const parent = sub.parentElement;
     parent.classList.add("has-sub");
 
-    // 親のテキスト部分をクリックで開閉
+
     const toggleTarget = parent.firstChild;
     toggleTarget.addEventListener("click", e => {
       if (e.target.tagName.toLowerCase() === "a") return;
