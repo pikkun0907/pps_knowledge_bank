@@ -23,14 +23,34 @@ body {
   overflow-y: auto;
 }
 
-#content {
-    padding: 30px
-}
-
 #graph {
   width: 100%;
   height: 600px;
 }
+
+#content {
+    padding: 30px
+}
+
+#content p, #content div { margin-bottom: 1em; }
+
+.note, .tip, .warning {
+  border-left: 4px solid;
+  background: #f9f9f9;
+  padding: 10px 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.note { border-color: #0078ff; }
+.tip { border-color: #28a745; }
+.warning { border-color: #dc3545; }
+
+#content ul { padding-left: 1.2rem; }
+#content li { margin: 0.5rem 0; }
+
 
 /* リスト・階層 */
 #sidebar ul { list-style: none; padding-left: 0; margin: 0; }
