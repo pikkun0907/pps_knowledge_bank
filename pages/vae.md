@@ -13,5 +13,5 @@ L = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - D_{KL}(q_\phi(z|x)\|p(z))
 $$
 
 ## 関連
-- [VQVAE](../page.html?topic=vqvae)
-- [PPO](../page.html?topic=ppo)
+- [VQVAE](page.html?topic=vqvae)
+- [PPO](page.html?topic=ppo)

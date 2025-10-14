@@ -23,4 +23,8 @@ Always normalize your inputs for better performance.
 Do not forget to tune the KL term weight.
 :::
 
+### link ex
+- [VQVAE](page.html?topic=vqvae)
+- [PPO](page.html?topic=ppo)
+
 ![Sample image](imgs/robot.png "Sample imgs")
