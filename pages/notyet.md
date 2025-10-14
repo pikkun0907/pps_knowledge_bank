@@ -23,4 +23,4 @@ Always normalize your inputs for better performance.
 Do not forget to tune the KL term weight.
 :::
 
-![Sample image](../imgs/robot.png "Sample imgs")
+![Sample image](imgs/robot.png "Sample imgs")
