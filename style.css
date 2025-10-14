@@ -38,7 +38,7 @@ body {
 
 .note, .tip, .warning {
   border-left: 6px solid;
-  padding: 15px 20px;
+  padding: 15px 20px 15px 50px; /* 左側に余白を作る */
   margin: 20px 0;
   border-radius: 12px;
   font-size: 0.95rem;
@@ -48,39 +48,28 @@ body {
   transition: all 0.2s ease;
 }
 
-/* 背景グラデーションとカラー */
-.note {
-  border-color: #0078ff;
-  background: linear-gradient(90deg, #e6f0ff, #ffffff);
-}
+.note { border-color: #0078ff; background: linear-gradient(90deg, #e6f0ff, #ffffff); }
+.tip { border-color: #28a745; background: linear-gradient(90deg, #e6ffe6, #ffffff); }
+.warning { border-color: #dc3545; background: linear-gradient(90deg, #ffe6e6, #ffffff); }
 
-.tip {
-  border-color: #28a745;
-  background: linear-gradient(90deg, #e6ffe6, #ffffff);
-}
-
-.warning {
-  border-color: #dc3545;
-  background: linear-gradient(90deg, #ffe6e6, #ffffff);
-}
-
-/* 左上にアイコンを追加 */
+/* 左端にアイコンを追加 */
 .note::before,
 .tip::before,
 .warning::before {
-  content: '';
+  content: "\f129"; /* Font Awesome のアイコンコード例 */
+  font-family: "Font Awesome 5 Free"; /* Font Awesome 5 Free を使う場合 */
+  font-weight: 900; /* Solid アイコン */
   position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
 }
 
-.note::before { background: #0078ff; }
-.tip::before { background: #28a745; }
-.warning::before { background: #dc3545; }
-
+/* アイコンカラー */
+.note::before { color: #0078ff; content: "\f05a"; }     /* info-circle */
+.tip::before { color: #28a745; content: "\f059"; }      /* check-circle */
+.warning::before { color: #dc3545; content: "\f071"; }  /* exclamation-triangle */
 
 
 #content ul { padding-left: 1.2rem; }
