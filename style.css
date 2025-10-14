@@ -94,6 +94,17 @@ ul li.open > ul {
   display: block;
 }
 
+li.has-sub > ul {
+  display: none;
+  margin-left: 0.8rem;
+  border-left: 2px solid #e0e0e0;
+}
+
+/* openクラスで展開 */
+li.has-sub.open > ul {
+  display: block;
+}
+
 /* ===== スクロール対応 ===== */
 #sidebar {
   overflow-y: auto;

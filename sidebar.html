@@ -102,17 +102,22 @@
 </ul>
 
 <script>
-  // サブメニュー開閉
-  document.addEventListener("DOMContentLoaded", () => {
-    const items = document.querySelectorAll("#sidebar > ul > li");
+document.addEventListener("DOMContentLoaded", () => {
+  // サブリストを持つliだけを取得
+  const liWithSub = document.querySelectorAll("#sidebar li > ul");
 
-    items.forEach(item => {
-      item.addEventListener("click", (e) => {
-        // aタグクリックは無視
-        if (e.target.tagName.toLowerCase() === "a") return;
+  liWithSub.forEach(subUl => {
+    const parentLi = subUl.parentElement;
+    parentLi.classList.add("has-sub"); // CSS用にクラス追加
 
-        item.classList.toggle("open");
-      });
+    // li全体ではなくテキスト部分だけクリック対象にする
+    parentLi.firstChild.addEventListener("click", (e) => {
+      // aタグは無視
+      if (e.target.tagName.toLowerCase() === "a") return;
+
+      e.stopPropagation(); // 親にバブらないように
+      parentLi.classList.toggle("open");
     });
   });
+});
 </script>
