@@ -1,41 +1,48 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Knowledge Bank - Topic</title>
+  <title>Knowledge Bank</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <nav class="sidebar" id="sidebar"></nav>
-
-    <main class="content">
-      <article id="topic-content">
-        <h1>Loading...</h1>
-      </article>
-    </main>
-  </div>
+  <div id="sidebar"></div>
+  <div id="content">Loading...</div>
 
   <script>
-    // sidebar読み込み
-    fetch("sidebar.html")
+    // --- サイドバー読込 ---
+    fetch('sidebar.html')
       .then(res => res.text())
-      .then(html => document.getElementById("sidebar").innerHTML = html);
+      .then(html => document.getElementById('sidebar').innerHTML = html);
 
-    // URLパラメータでtopic取得
+    // --- URLパラメータからtopicを取得 ---
     const params = new URLSearchParams(window.location.search);
-    const topic = params.get("topic") || "vae";
+    const topic = params.get('topic');
 
-    // Markdown読込
-    fetch(`pages/${topic}.md`)
-      .then(res => res.text())
-      .then(text => {
-        document.getElementById("topic-content").innerHTML = marked.parse(text);
+    // --- 対応するMarkdownファイルを読み込み ---
+    const contentDiv = document.getElementById('content');
+    const filePath = `pages/${topic}.md`;
+
+    fetch(filePath)
+      .then(response => {
+        if (!response.ok) {
+          // ファイルが存在しない場合 → notyet.mdにリダイレクト
+          return fetch('pages/notyet.md');
+        }
+        return response;
       })
-      .catch(() => {
-        document.getElementById("topic-content").innerHTML = "<p>⚠️ ページが見つかりません。</p>";
+      .then(response => response.text())
+      .then(text => {
+        // Markdown → HTML変換（marked.jsを利用）
+        contentDiv.innerHTML = marked.parse(text);
+      })
+      .catch(err => {
+        console.error(err);
+        contentDiv.innerHTML = "<p>Error loading content.</p>";
       });
   </script>
+
+  <!-- marked.jsを読み込み（CDN） -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
