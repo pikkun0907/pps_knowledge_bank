@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Knowledge Bank - Topic</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+      <article id="topic-content">
+        <h1>Loading...</h1>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    // sidebar読み込み
+    fetch("sidebar.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("sidebar").innerHTML = html);
+
+    // URLパラメータでtopic取得
+    const params = new URLSearchParams(window.location.search);
+    const topic = params.get("topic") || "vae";
+
+    // Markdown読込
+    fetch(`pages/${topic}.md`)
+      .then(res => res.text())
+      .then(text => {
+        document.getElementById("topic-content").innerHTML = marked.parse(text);
+      })
+      .catch(() => {
+        document.getElementById("topic-content").innerHTML = "<p>⚠️ ページが見つかりません。</p>";
+      });
+  </script>
+</body>
+</html>

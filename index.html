@@ -4,33 +4,24 @@
   <meta charset="UTF-8">
   <title>Knowledge Bank</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <nav class="sidebar">
-      <h2>目次</h2>
-      <ul>
-        <li>Machine Learning
-          <ul>
-            <li><a href="pages/vae.html">VAE</a></li>
-            <li><a href="pages/vqvae.html">VQVAE</a></li>
-            <li><a href="pages/ppo.html">PPO</a></li>
-          </ul>
-        </li>
-        <li>Control
-          <ul>
-            <li><a href="pages/dcm.html">DCM</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    
+    <nav class="sidebar" id="sidebar"></nav>
+
     <main class="content">
       <h1>Knowledge Graph</h1>
       <div id="graph"></div>
-      <script src="https://d3js.org/d3.v7.min.js"></script>
       <script src="script.js"></script>
     </main>
   </div>
+
+  <script>
+    // sidebar読み込み
+    fetch("sidebar.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("sidebar").innerHTML = html);
+  </script>
 </body>
 </html>
