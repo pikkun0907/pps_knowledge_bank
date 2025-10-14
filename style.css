@@ -3,7 +3,6 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #f7f8fa;
   display: flex; /* 横並び */
-  height: 100vh;
 }
 
 /* サイドバー */
