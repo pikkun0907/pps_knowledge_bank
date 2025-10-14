@@ -54,6 +54,13 @@ body {
 #content ul { padding-left: 1.2rem; }
 #content li { margin: 0.5rem 0; }
 
+#content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto;
+    }
+
 
 /* リスト・階層 */
 #sidebar ul { list-style: none; padding-left: 0; margin: 0; }
