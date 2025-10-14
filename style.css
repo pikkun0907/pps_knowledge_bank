@@ -1,41 +1,105 @@
+/* ===== 全体構成 ===== */
 body {
   margin: 0;
-  font-family: 'Inter', 'Noto Sans JP', sans-serif;
-  display: flex;
-  height: 100vh;
-  background-color: #fafafa;
-}
-
-.container {
-  display: flex;
-  flex: 1;
-}
-
-.sidebar {
-  width: 250px;
-  background-color: #f2f4f8;
-  padding: 20px;
-  border-right: 1px solid #ddd;
-  overflow-y: auto;
-}
-
-.sidebar h2 {
-  font-size: 1.1rem;
-  margin-top: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: #f7f8fa;
   color: #333;
 }
 
-.sidebar a {
-  text-decoration: none;
-  color: #0078d7;
+h2 {
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+  border-left: 4px solid #0078ff;
+  padding-left: 10px;
 }
 
-.sidebar a:hover {
+/* ===== メニュー全体 ===== */
+ul {
+  list-style: none;
+  padding-left: 15px;
+  margin: 0;
+}
+
+li {
+  margin: 5px 0;
+}
+
+/* ===== リンク ===== */
+a {
+  color: #444;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #0078ff;
   text-decoration: underline;
 }
 
-.content {
-  flex: 1;
-  padding: 40px;
+/* ===== 階層構造 ===== */
+ul ul {
+  margin-left: 0.5rem;
+  border-left: 2px solid #e0e0e0;
+  padding-left: 0.8rem;
+}
+
+ul ul li {
+  font-size: 0.95rem;
+}
+
+/* ===== 最上位カテゴリのデザイン ===== */
+ul > li {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  padding: 10px 15px;
+  margin: 10px 0;
+  transition: all 0.2s ease;
+}
+
+ul > li:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+/* ===== 折りたたみ対応（optional） ===== */
+ul ul {
+  display: none;
+}
+
+ul > li:hover > ul {
+  display: block;
+}
+
+/* ===== スクロール対応（長くなってもOK） ===== */
+body {
   overflow-y: auto;
+  max-height: 100vh;
+  padding: 20px;
+}
+
+/* ===== ハイライト（現在のページ） ===== */
+a.active {
+  color: #0078ff;
+  font-weight: 600;
+  border-bottom: 2px solid #0078ff;
+}
+
+/* ===== メディア対応（スマホ） ===== */
+@media (max-width: 800px) {
+  body {
+    padding: 10px;
+  }
+
+  ul > li {
+    padding: 8px 10px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
 }
