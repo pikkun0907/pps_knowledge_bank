@@ -21,7 +21,7 @@ body {
   padding: 30px;
   overflow-y: auto;
 }
-#main.content {
+.content {
     padding: 30px
 }
 
