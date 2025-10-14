@@ -44,10 +44,19 @@
         text = text.replace(/:::note\s([\s\S]*?):::/g, '<div class="note">$1</div>');
         text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
         text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
-  
+        const mathBlocks = [];
+        text = text.replace(/\$\$([\s\S]+?)\$\$/g, (match, p1) => {
+            mathBlocks.push(p1);
+            return `@@MATHBLOCK${mathBlocks.length-1}@@`;
+        });
 
         // Markdown → HTML
-        contentDiv.innerHTML = marked.parse(text);
+        let html = marked.parse(text);
+
+        // 置換して MathJax に戻す
+        html = html.replace(/@@MATHBLOCK(\d+)@@/g, (match, idx) => `$$${mathBlocks[idx]}$$`);
+
+        contentDiv.innerHTML = html;
 
         // MathJaxで数式レンダリング
         if(window.MathJax) {
