@@ -100,3 +100,19 @@
     </ul>
   </li>
 </ul>
+
+<script>
+  // サブメニュー開閉
+  document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll("#sidebar > ul > li");
+
+    items.forEach(item => {
+      item.addEventListener("click", (e) => {
+        // aタグクリックは無視
+        if (e.target.tagName.toLowerCase() === "a") return;
+
+        item.classList.toggle("open");
+      });
+    });
+  });
+</script>
