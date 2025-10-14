@@ -23,8 +23,13 @@ body {
   overflow-y: auto;
 }
 
-div#content {
+#content {
     padding: 30px
+}
+
+#graph {
+  width: 100%;
+  height: 600px;
 }
 
 /* リスト・階層 */
