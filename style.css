@@ -22,7 +22,9 @@ body {
   overflow-y: auto;
 }
 .content {
-    padding: 30px
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #graph {
@@ -32,7 +34,9 @@ body {
 
 #content {
     padding: 30px;
-    width: 60%
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #content p, #content div { margin-bottom: 1em; }
