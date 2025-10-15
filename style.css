@@ -129,6 +129,30 @@ body {
   content: "\f1d9";   /* atom (science) */
 }
 
+/* copy button for code block */
+.copy-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+.copy-button:hover { opacity: 1; }
+
+pre {
+  position: relative;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+}
+
 
 
 #content ul { padding-left: 1.2rem; }
