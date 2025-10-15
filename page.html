@@ -83,10 +83,10 @@
       });
 
         // balock math and inline math
-        const mathBlocks = [];
+        const blockMath = [];
         text = text.replace(/\$\$([\s\S]+?)\$\$/g, (match, p1) => {
-            mathBlocks.push(p1);
-            return `@@MATHBLOCK${mathBlocks.length-1}@@`;
+          blockMath.push(p1);
+          return `@@BLOCKMATH${blockMath.length-1}@@`;
         });
 
         const inlineMath = [];
