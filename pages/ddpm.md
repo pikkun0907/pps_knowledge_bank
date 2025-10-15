@@ -18,21 +18,22 @@ Let’s first look at a simple (but wrong) way to do it — then we’ll fix it.
 First, you have the original data distribution $x_0$. At the next time step, we update it with $$x_1 = x_0 + \beta\epsilon$$
 where $\epsilon \sim \mathcal N(0, 1)$ and $\beta \in [0,1]$. The equivalent expression is
 
-$$x_1 =q(x_1|x_0) = \mathcal N (x_0, \beta)$$
+$$q(x_1|x_0) = \mathcal N (x_0, \beta)$$
 (if you do not understand this transformation, ask chatgpt.)
 
 You can repeat one more time, and you will get 
 $$x_2 = x_1 +\beta\epsilon = x_0 + 2\beta\epsilon$$
 
-$$ \therefore x_2 = q(x_2|x_0) = \mathcal N (x_0, 2\beta) $$
+$$ \therefore  q(x_2|x_0) = \mathcal N (x_0, 2\beta) $$
 Then, you can easily imagine that at time $t$ 
 
 $$x_t = x_0 +t\beta\epsilon$$
-$$ \therefore x_t = q(x_t|x_0) = \mathcal N (x_0, t\beta) $$
+$$ \therefore  q(x_t|x_0) = \mathcal N (x_0, t\beta) $$
 
 However, this formulation doesn’t work for a proper forward diffusion process. The problems are:
 
 :::theory
+
 1. The variance $t\beta$ keeps growing without bound, which makes the distribution unstable.
 
 2. The mean stays tied to the original data $x_0$, so the samples always “remember” the initial image.
