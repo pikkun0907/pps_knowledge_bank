@@ -134,7 +134,7 @@ body {
   position: absolute;
   right: 10px;
   top: 10px;
-  background: #0078ff;
+  background: #9cc4bf;
   color: white;
   border: none;
   border-radius: 6px;
@@ -148,7 +148,7 @@ body {
 
 pre {
   position: relative;
-  background: #f8f9fa;
+  background: #ffffff;
   border-radius: 10px;
   padding: 15px;
 }
