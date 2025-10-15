@@ -82,7 +82,7 @@ We can see that $\sqrt{\bar\alpha_t} \rightarrow 0$ and $(1-\bar\alpha_t) \right
 
 Yayyyy:)))
 
-:::info
+:::note
 If $\beta$ is time dependency, we can formulate $\bar\alpha_t = \prod_{s=1}^t (1-\beta_s)$
 :::
 
