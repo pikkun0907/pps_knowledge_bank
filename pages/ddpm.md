@@ -3,5 +3,5 @@
 ## Useful Learning Material
 
 :::youtube
-https://youtu.be/EhndHhIvWWw?si=CL5MZTr8sU8jlCsR
+https://www.youtube.com/watch?v=EhndHhIvWWw
 :::
