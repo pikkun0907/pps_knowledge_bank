@@ -82,18 +82,24 @@
         }
       });
 
-        // math
+        // balock math and inline math
         const mathBlocks = [];
         text = text.replace(/\$\$([\s\S]+?)\$\$/g, (match, p1) => {
             mathBlocks.push(p1);
             return `@@MATHBLOCK${mathBlocks.length-1}@@`;
         });
 
-        // Markdown → HTML
+        const inlineMath = [];
+        text = text.replace(/(?<!\$)\$([^\$]+?)\$(?!\$)/g, (match, p1) => {
+          inlineMath.push(p1);
+          return `@@INLINEMATH${inlineMath.length-1}@@`;
+        });
+
+        // --- Markdown → HTML ---
         let html = marked.parse(text);
 
-        // mathjax
-        html = html.replace(/@@MATHBLOCK(\d+)@@/g, (match, idx) => `$$${mathBlocks[idx]}$$`);
+        html = html.replace(/@@BLOCKMATH(\d+)@@/g, (match, idx) => `$$${blockMath[idx]}$$`);
+        html = html.replace(/@@INLINEMATH(\d+)@@/g, (match, idx) => `$${inlineMath[idx]}$`);
 
         contentDiv.innerHTML = html;
 
