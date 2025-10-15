@@ -31,7 +31,8 @@ body {
 }
 
 #content {
-    padding: 30px
+    padding: 30px;
+    width: 60%
 }
 
 #content p, #content div { margin-bottom: 1em; }
