@@ -55,7 +55,7 @@
         text = text.replace(/:::idea\s([\s\S]*?):::/g, '<div class="idea">$1</div>');
         text = text.replace(/:::theory\s([\s\S]*?):::/g, '<div class="theory">$1</div>');
         text = text.replace(/:::example\s([\s\S]*?):::/g, (match, p1) => {
-        // extract ```
+        // code
         const codeMatch = p1.match(/```(\w+)?\n([\s\S]*?)```/);
         if (codeMatch) {
           const lang = codeMatch[1] || '';
@@ -64,6 +64,21 @@
         } else {
           // if no ``` xxx ``` elements,
           return `<div class="example">${p1}</div>`;
+        }
+      });
+        //Youtube embodyment
+        text = text.replace(/:::youtube\s([\s\S]*?):::/g, (match, p1) => {
+
+        const videoIdMatch = p1.match(/v=([a-zA-Z0-9_-]+)/);
+        if (videoIdMatch) {
+          const videoId = videoIdMatch[1];
+          return `<div class="youtube-container">
+                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                  </div>`;
+        } else {
+          return `<div class="youtube-container">Invalid YouTube URL</div>`;
         }
       });
 
