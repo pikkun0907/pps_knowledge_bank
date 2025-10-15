@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Knowledge Bank</title>
+
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$']],   // $...$ をインライン
+      displayMath: [['$$', '$$']] // $$...$$ をブロック
+    },
+    options: {
+      skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+    }
+  };
+  </script>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -14,7 +26,7 @@
 
   <!-- Clipboard.js for copy button -->
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-  <!-- <script>
+  <script>
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$']],   // $...$ をインライン
@@ -24,7 +36,7 @@
       skipHtmlTags: ['script','noscript','style','textarea','pre','code']
     }
   };
-  </script> -->
+  </script>
 
 </head>
 <body>
