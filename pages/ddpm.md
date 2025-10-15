@@ -34,9 +34,9 @@ However, this formulation doesn’t work for a proper forward diffusion process.
 
 :::theory
 
-1. The variance $t\beta$ keeps growing without bound, which makes the distribution unstable.
+(1) The variance $t\beta$ keeps growing without bound, which makes the distribution unstable.
 
-2. The mean stays tied to the original data $x_0$, so the samples always “remember” the initial image.
+(2) The mean stays tied to the original data $x_0$, so the samples always “remember” the initial image.
 :::
 
 What we actually want in a diffusion model is to eventually generate a new sample from pure noise.
@@ -44,9 +44,7 @@ That means, after many steps, the noisy sample should follow a simple, known dis
 
 In practice, we usually choose the standard Gaussian: $\mathcal N(0,1)$
 
-So the goal is:
-
-$q(x_t|x_0) \rightarrow \mathcal N(0,1)$ as $t \rightarrow \infty $
+So the goal is: $q(x_t|x_0) \rightarrow \mathcal N(0,1)$ as $t \rightarrow \infty $
 
 
 This way, the data eventually turns into pure noise, which is essential for the reverse diffusion process.
@@ -64,28 +62,38 @@ $$q(x_1|x_0) = \sqrt{1-\beta}x_0 + \beta\epsilon$$
 
 where $\epsilon \sim \mathcal N(0, 1)$ and $\beta \in [0,1]$.
 
-This way, we shrink the original signal a bit (by multiplying with $\sqrt{1-\beta}$ while adding a bit of noise.
+This way, we shrink the original signal a bit (by multiplying with $\sqrt{1-\beta}$) while adding a bit of noise.
 This keeps the total variance stable — that’s why it’s called variance-preserving.
 
 Therefore, at time $t$, we have
 
-$$q(x_t|x_0) = \sqrt{1-\beta}^tx_0 + (1-(1-\beta)^t)\epsilon
-$$
-
-By defining $\bar\alpha_t = (1-\beta)^t$, we can rewrite it as
-
 $$q(x_t|x_0) = \sqrt{\bar\alpha_t}x_0 + (1-\bar\alpha_t)\epsilon
 $$
 
-Now think about $t \rightarrow \infty$. 
+where $\bar\alpha_t = (1-\beta)^t$
 
-We can see that $\sqrt{\bar\alpha_t} \rightarrow 0$ and $(1-\bar\alpha_t) \rightarrow 1$ since $\beta \in [0,1]$. This means that  $q(x_t|x_0) \rightarrow \mathcal N(0,1)$ as $t \rightarrow \infty $.
+:::note
+If $\beta$ is time dependent, we can formulate $\bar\alpha_t = \prod_{s=1}^t (1-\beta_s)$
+:::
+
+
+As $t$ increases:
+
+$$(1-\beta)^t \rightarrow 0$$
+
+which means
+
+$$\sqrt{\bar\alpha_t} \rightarrow 0 ~~\text{and}~~1-\bar\alpha_t \rightarrow 1$$
+
+Therefore,
+
+$$q(x_t|x_0) \rightarrow \mathcal N(0,1)$$
+
+So, as time goes on, the image (or data) becomes pure Gaussian noise — exactly what we want!
 
 Yayyyy:)))
 
-:::note
-If $\beta$ is time dependency, we can formulate $\bar\alpha_t = \prod_{s=1}^t (1-\beta_s)$
-:::
+
 
 
 
