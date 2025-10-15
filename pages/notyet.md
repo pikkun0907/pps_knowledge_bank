@@ -29,8 +29,9 @@ You can combine the encoder and decoder losses for a hybrid model.
 
 :::example
 ```python
-z = encoder(x)
-x_hat = decoder(z)
+import numpy as np
+
+print("Hello poopoosqueezer knowledge bank")
 ```
 :::
 
