@@ -45,6 +45,9 @@
         text = text.replace(/:::note\s([\s\S]*?):::/g, '<div class="note">$1</div>');
         text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
         text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
+        text = text.replace(/:::idea\s([\s\S]*?):::/g, '<div class="idea">$1</div>');
+        text = text.replace(/:::example\s([\s\S]*?):::/g, '<div class="example">$1</div>');
+        text = text.replace(/:::theory\s([\s\S]*?):::/g, '<div class="theory">$1</div>');
         const mathBlocks = [];
         text = text.replace(/\$\$([\s\S]+?)\$\$/g, (match, p1) => {
             mathBlocks.push(p1);
