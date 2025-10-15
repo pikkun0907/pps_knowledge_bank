@@ -53,8 +53,19 @@
         text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
         text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
         text = text.replace(/:::idea\s([\s\S]*?):::/g, '<div class="idea">$1</div>');
-        text = text.replace(/:::example\s([\s\S]*?):::/g, '<div class="example">$1</div>');
         text = text.replace(/:::theory\s([\s\S]*?):::/g, '<div class="theory">$1</div>');
+        text = text.replace(/:::example\s([\s\S]*?):::/g, (match, p1) => {
+        // extract ```
+        const codeMatch = p1.match(/```(\w+)?\n([\s\S]*?)```/);
+        if (codeMatch) {
+          const lang = codeMatch[1] || '';
+          const code = codeMatch[2];
+          return `<div class="example"><pre><code class="language-${lang}">${code}</code></pre></div>`;
+        } else {
+          // if no ``` xxx ``` elements,
+          return `<div class="example">${p1}</div>`;
+        }
+      });
 
         // math
         const mathBlocks = [];

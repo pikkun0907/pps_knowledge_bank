@@ -31,6 +31,7 @@ You can combine the encoder and decoder losses for a hybrid model.
 ```python
 z = encoder(x)
 x_hat = decoder(z)
+```
 :::
 
 :::theory
