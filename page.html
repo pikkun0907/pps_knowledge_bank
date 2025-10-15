@@ -90,10 +90,11 @@
         });
 
         const inlineMath = [];
-        text = text.replace(/(?<!\$)\$([^\$]+?)\$(?!\$)/g, (match, p1) => {
-          inlineMath.push(p1);
+        text = text.replace(/(?<!@)\\?\$([^\$]+?)\\?\$/g, (m, p) => {
+          inlineMath.push(p);
           return `@@INLINEMATH${inlineMath.length-1}@@`;
         });
+
 
         // --- Markdown → HTML ---
         let html = marked.parse(text);
