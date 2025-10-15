@@ -7,6 +7,13 @@
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+
+  <!-- Clipboard.js for copy button -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
 </head>
 <body>
@@ -48,6 +55,8 @@
         text = text.replace(/:::idea\s([\s\S]*?):::/g, '<div class="idea">$1</div>');
         text = text.replace(/:::example\s([\s\S]*?):::/g, '<div class="example">$1</div>');
         text = text.replace(/:::theory\s([\s\S]*?):::/g, '<div class="theory">$1</div>');
+
+        // math
         const mathBlocks = [];
         text = text.replace(/\$\$([\s\S]+?)\$\$/g, (match, p1) => {
             mathBlocks.push(p1);
@@ -61,6 +70,25 @@
         html = html.replace(/@@MATHBLOCK(\d+)@@/g, (match, idx) => `$$${mathBlocks[idx]}$$`);
 
         contentDiv.innerHTML = html;
+
+        //
+        if (window.Prism) {
+          Prism.highlightAll();
+        }
+
+        //
+        document.querySelectorAll('pre > code').forEach((codeBlock) => {
+          const button = document.createElement('button');
+          button.className = 'copy-button';
+          button.textContent = 'Copy';
+          codeBlock.parentNode.insertBefore(button, codeBlock);
+
+          button.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent);
+            button.textContent = 'Copied!';
+            setTimeout(() => (button.textContent = 'Copy'), 1500);
+          });
+        });
 
         // MathJax render
         if(window.MathJax) {

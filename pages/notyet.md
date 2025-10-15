@@ -34,7 +34,7 @@ x_hat = decoder(z)
 :::
 
 :::theory
-The KL divergence term ensures the latent distribution remains close to a prior, typically $\mathcal{N}(0, I)$.
+The KL divergence term ensures the latent distribution remains close to a prior, typically $$\mathcal{N}(0, I)$$.
 :::
 
 ### link ex
