@@ -71,6 +71,65 @@ body {
 .tip::before { color: #28a745; content: "\f059"; }      /* check-circle */
 .warning::before { color: #dc3545; content: "\f071"; }  /* exclamation-triangle */
 
+/* --- 共通スタイル --- */
+.idea, .example, .theory {
+  border-left: 6px solid;
+  padding: 15px 20px 15px 50px; 
+  margin: 20px 0;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* --- 個別デザイン --- */
+.idea {
+  border-color: #ffb300; 
+  background: linear-gradient(90deg, #fff9e6, #ffffff);
+}
+
+.example {
+  border-color: #17a2b8; 
+  background: linear-gradient(90deg, #e6faff, #ffffff);
+}
+
+.theory {
+  border-color: #6f42c1; 
+  background: linear-gradient(90deg, #f3e6ff, #ffffff);
+}
+
+/* --- アイコン共通設定 --- */
+.idea::before,
+.example::before,
+.theory::before {
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900; 
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+/* --- 各アイコン指定 --- */
+.idea::before { 
+  color: #ffb300; 
+  content: "\f0eb";   /* lightbulb */
+}
+
+.example::before { 
+  color: #17a2b8; 
+  content: "\f121";   /* code */
+}
+
+.theory::before { 
+  color: #6f42c1; 
+  content: "\f1d9";   /* atom (science) */
+}
+
+
 
 #content ul { padding-left: 1.2rem; }
 #content li { margin: 0.5rem 0; }

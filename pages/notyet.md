@@ -23,6 +23,20 @@ Always normalize your inputs for better performance.
 Do not forget to tune the KL term weight.
 :::
 
+:::idea
+You can combine the encoder and decoder losses for a hybrid model.
+:::
+
+:::example
+```python
+z = encoder(x)
+x_hat = decoder(z)
+:::
+
+:::theory
+The KL divergence term ensures the latent distribution remains close to a prior, typically $\mathcal{N}(0, I)$.
+:::
+
 ### link ex
 - [VQVAE](page.html?topic=vqvae)
 - [PPO](page.html?topic=ppo)
