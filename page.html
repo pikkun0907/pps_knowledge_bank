@@ -123,10 +123,11 @@
         });
 
         // MathJax render
-        if(window.MathJax) {
-          MathJax.typesetPromise()
-            .then(() => console.log("MathJax rendered"))
-            .catch(err => console.error(err));
+        if (window.MathJax) {
+          MathJax.typesetClear && MathJax.typesetClear();
+          MathJax.typesetPromise([contentDiv])
+            .then(() => console.log("✅ MathJax rendered"))
+            .catch(err => console.error("❌ MathJax error:", err));
         }
       })
       .catch(err => {
