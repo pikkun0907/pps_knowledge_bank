@@ -96,6 +96,3 @@ Yayyyy:)))
 
 
 
-
-
-## Whole view
