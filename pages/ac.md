@@ -64,7 +64,7 @@ $$\begin{align}\nabla_\theta J(\theta)
 
 Here, we usually choose value function $V(s)$ as $b(s)$. 
 
-Then we have an Actor-Critic formulation,
+Finally, we deriver an Actor-Critic formulation, as mentioned at the top of this page,
 $$\begin{align}\nabla_\theta J(\theta)
 &= \mathbb E_{\tau \sim p_\theta} \lbrack \sum_{t=0}^{\infty}[Q^{\pi_\theta}(s_t,a_t)-V^{\pi_\theta}(s)]\cdot\nabla_\theta \log\pi_\theta(a_t|s_t)\rbrack
 
@@ -88,19 +88,19 @@ $$A^{\pi}(s,a):=Q^{\pi}(s,a)-V^{\pi}(s)$$
 
     Thus,
 
-    $$\therefore A(s,a) \approx R - V(s)$$
+    $$\therefore A_t(s,a) \approx R_t - V(s_t)$$
 
-2. TD
+2. TD(0)
 
     We approximate $Q$ as 
 
-    $$Q(s,a) \approx r + \gamma V(s')$$
+    $$Q_t(s,a) \approx r_t + \gamma V(s_{t+1})$$
 
     Thus, 
 
-    $$\therefore A(s,a) \approx r + \gamma V(s') - V(s)$$
+    $$\therefore A_t(s,a) \approx r_t + \gamma V(s_{t+1}) - V(s_t)$$
 
-    This is equivalent to TD $\delta(\lambda)$. 
+    This is equivalent to TD $\delta_t$. 
 
     :::note
     理論的には、方策 $\pi$に従うときの Q関数は：
@@ -115,7 +115,93 @@ $$A^{\pi}(s,a):=Q^{\pi}(s,a)-V^{\pi}(s)$$
 
     TD only considers one step ahead for approximation.
 
-    
+    However, we can also include more steps with weighted average. 
+
+    Recall TD is
+
+    $$\delta_t =  r_t + \gamma V(s_{t+1}) - V(s_t)$$
+
+    Then we approximate $A$ as
+
+    $$\begin{align}A_t(s,a) &\approx \delta_t + \gamma\lambda\delta_{t+1}+{(\gamma\lambda)}^2\delta_{t+2}\cdots\\
+    &= \sum_{l=0}^\infty (\gamma\lambda)^l\delta_{t+l}
+    \end{align}$$
+
+    $\lambda = 0$ →　TD(0)（1ステップ）
+
+    $\lambda = 1$ →　モンテカルロ推定（すべての将来報酬を考慮）
+
+## Critic
+
+To calculate the advantage function, we need the value finction. 
+
+However, we cannot compute the value function $V(s)$ analitically. 
+
+Therefore, we use the critic network to estimate the expected return for a given state or state-action pair, which is then used to compute the advantage for policy updates.
+
+:::note
+
+1. **Exact value functions are unknown**
+
+    The true value function $Q^\pi(s,a), V^\pi(s)$ depends on the expectation over all possible future trajectories, which we generally cannot compute analytically in most RL problems.
+
+2. **Sampling alone is noisy and high variance**
+
+    Monte Carlo estimates of returns $R_t$ are unbiased but have high variance.
+
+    Using a learned critic to approximate $V(s)$ allows us to reduce variance in the policy gradient.
+
+3. **Enables TD learning / bootstrapping**
+    By approximating the critic, we can update it incrementally using TD errors.
+
+:::
+
+
+### Critic network training
+
+We have access to the full trajectories of states, actions, and rewards. These trajectories serve as the dataset for training the critic network, which is optimized using gradient descent to minimize a specified loss function, typically the mean-squared error between predicted values and target returns.
+
+**Loss function**
+
+$$L_v(\phi) = (V_\phi(s_t)-R_t
+)^2$$
+
+1. Monte Carlo: $R_t = \sum_{k=0}^\infty\gamma^kr_{t+k}$
+
+2. n-step: $R_t^{(n)} = \sum_{k=0}^{n-1}\gamma^kr_{t+k}+\gamma^nV(s_{t+n})$
+
+3. TD(0): $R_t = r_t + \gamma V(s_{t+1})$
+
+Then optimize parameter $\phi$ with gradient descent.
+
+## Algorithm: Actor-Critic Training
+
+Actor network : $\pi_\theta$
+
+Critic network : $V_\phi$
+
+:::theory
+1. $\pi_\theta$でtrajectoryの生成 : $\tau$
+
+2. Update Critic parameter $\phi$
+
+    TD :   $\delta_t =  r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$
+
+    Loss : $L(\phi)= \delta_t^2$
+
+    Update $\phi \leftarrow \phi - \alpha \nabla_\phi L(\phi) $
+
+3. Update Actor prameter $\theta$
+
+    Advantage function (TD(0)) : $ A_t(s,a)=  r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$
+
+    Calculate gradient : $\nabla_\theta J(\theta)\approx\nabla_\theta \log\pi_\theta(a|s)\cdot A_t(s,a)$
+
+    Update $\theta \leftarrow \theta -\beta\nabla_\theta J(\theta)$
+
+
+4. Iteration 1~3
+:::
 
 
 
