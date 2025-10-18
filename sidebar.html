@@ -4,7 +4,7 @@
 </ul>
 
 <h2>Contents</h2>
-<ul>
+<ul id="sidebar">
   <!-- Supervised -->
   <li>Supervised Learning
     <ul>
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     parent.classList.add("has-sub");
 
 
-    const toggleTarget = parent.firstChild;
+    const toggleTarget = parent.firstElementChild;
     toggleTarget.addEventListener("click", e => {
       if (e.target.tagName.toLowerCase() === "a") return;
       e.stopPropagation();

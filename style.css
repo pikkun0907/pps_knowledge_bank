@@ -175,7 +175,7 @@ pre {
   height: 100%;
 }
 
-/****************** Side bar *********************/
+
 
 #content ul { padding-left: 1.2rem; }
 #content li { margin: 0.5rem 0; }
@@ -187,13 +187,13 @@ pre {
       margin: 10px auto;
     }
 
-
+/****************** Side bar *********************/
 /* リスト・階層 */
 #sidebar ul { list-style: none; padding-left: 0; margin: 0; }
 #sidebar li { margin: 5px 0; }
 #sidebar li.has-sub > ul { display: none; }
 #sidebar li.has-sub.open > ul { display: block; }
-#sidebar ul ul { margin-left: 1rem; border-left: 2px solid #e0e0e0; padding-left: 0.8rem; }
+#sidebar ul ul { border-left: 2px solid #e0e0e0; padding-left: 0.4rem; }
 
 /* カード風 */
 #sidebar ul > li {
