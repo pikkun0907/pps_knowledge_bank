@@ -141,17 +141,17 @@ Therefore, we use the critic network to estimate the expected return for a given
 
 :::note
 
-1. **Exact value functions are unknown**
+(1) **Exact value functions are unknown**
 
     The true value function $Q^\pi(s,a), V^\pi(s)$ depends on the expectation over all possible future trajectories, which we generally cannot compute analytically in most RL problems.
 
-2. **Sampling alone is noisy and high variance**
+(2) **Sampling alone is noisy and high variance**
 
     Monte Carlo estimates of returns $R_t$ are unbiased but have high variance.
 
     Using a learned critic to approximate $V(s)$ allows us to reduce variance in the policy gradient.
 
-3. **Enables TD learning / bootstrapping**
+(3) **Enables TD learning / bootstrapping**
     By approximating the critic, we can update it incrementally using TD errors.
 
 :::
@@ -180,6 +180,8 @@ Actor network : $\pi_\theta$
 
 Critic network : $V_\phi$
 
+### TD(0)
+
 :::theory
 1. $\pi_\theta$でtrajectoryの生成 : $\tau$
 
@@ -203,5 +205,31 @@ Critic network : $V_\phi$
 4. Iteration 1~3
 :::
 
+### GAE
+
+:::theory
+1. $\pi_\theta$でtrajectoryの生成 : $\tau$
+
+2. Update Critic parameter $\phi$
+
+    TD :   $\delta_t =  r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$
+
+    Loss : $L(\phi)= \delta_t^2$
+
+    Update $\phi \leftarrow \phi - \alpha \nabla_\phi L(\phi) $
+
+3. Update Actor prameter $\theta$
+
+    TD :   $\delta_t =  r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$
+
+    Advantage function (GAE) : $ A_t(s,a) \approx \delta_t + \gamma\lambda\delta_{t+1}+{(\gamma\lambda)}^2\delta_{t+2}\cdots$
+
+    Calculate gradient : $\nabla_\theta J(\theta)\approx\nabla_\theta \log\pi_\theta(a|s)\cdot A_t(s,a)$
+
+    Update $\theta \leftarrow \theta -\beta\nabla_\theta J(\theta)$
+
+
+4. Iteration 1~3
+:::
 
 

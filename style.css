@@ -134,6 +134,14 @@ body {
   content: "\f1d9";   /* atom (science) */
 }
 
+.note ol, .tip ol, .warning ol, .theory ol, .idea ol, .example ol {
+  margin: 10px 0;
+  padding-left: 1.5em;
+}
+.note li, .tip li, .warning li, .theory li, .idea li, .example li {
+  margin-bottom: 0.5em;
+}
+
 /* copy button for code block */
 .copy-button {
   position: absolute;
