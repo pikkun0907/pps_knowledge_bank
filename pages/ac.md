@@ -2,7 +2,10 @@
 
 ## Actor
 
-Update parameter based on "Policy Gradient".
+We have an actor network $\pi_\theta$ that produce action given a certain observation. 
+
+
+Update parameter $\theta$ based on "Policy Gradient".
 
 $$\nabla_\theta J(\theta)=\mathbb E [\nabla_\theta \log\pi_\theta(a|s)\cdot A(s,a)]$$
 
