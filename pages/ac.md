@@ -15,9 +15,11 @@ Update parameter $\theta$ based on "Policy Gradient".
 
 $$\nabla_\theta J(\theta)=\mathbb E _{s,a\sim\pi_\theta} [\nabla_\theta \log\pi_\theta(a|s)\cdot A(s,a)]$$
 
+Update parameter $\theta$ based on "Policy Gradient" : $\theta \leftarrow \theta +\beta\nabla_\theta J(\theta)$
+
 :::
 
-where $A^{\pi_\theta}(s,a):=Q^{\pi_\theta}(s,a)-V^{\pi_\theta}(s)$. This $A$ is called "advantage function".
+where $A^{\pi_\theta}(s,a):=Q^{\pi_\theta}(s,a)-V^{\pi_\theta}(s)$. This $A$ is called "advantage function". We want to maximize the advantage function.
 
 
 ### Derivation
@@ -215,7 +217,7 @@ TD(0)
 
     Calculate gradient : $\nabla_\theta J(\theta)\approx\nabla_\theta \log\pi_\theta(a|s)\cdot A_t(s,a)$
 
-    Update $\theta \leftarrow \theta -\beta\nabla_\theta J(\theta)$
+    Update $\theta \leftarrow \theta +\beta\nabla_\theta J(\theta)$
 
 
 4. Iteration 1~3
@@ -244,7 +246,7 @@ GAE
 
     Calculate gradient : $\nabla_\theta J(\theta)\approx\nabla_\theta \log\pi_\theta(a|s)\cdot A_t(s,a)$
 
-    Update $\theta \leftarrow \theta -\beta\nabla_\theta J(\theta)$
+    Update $\theta \leftarrow \theta +\beta\nabla_\theta J(\theta)$
 
 
 4. Iteration 1~3

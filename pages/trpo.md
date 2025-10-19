@@ -35,5 +35,4 @@ $$\nabla_\theta J(\theta)=\mathbb E _{s,a\sim\pi_\theta} [\nabla_\theta \log\pi_
 :::
 
 
-$$J(\theta)\approx\mathbb E_{t}  ​[\log\pi_\theta​(a​∣s​)A_t(s,a)​]$$
 
