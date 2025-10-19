@@ -117,6 +117,10 @@
 
         contentDiv.innerHTML = html;
 
+        contentDiv.querySelectorAll('h2, h3').forEach(el => {
+          el.classList.add('page');
+        });
+
         //
         if (window.Prism) {
           Prism.highlightAll();
