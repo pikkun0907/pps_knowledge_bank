@@ -63,63 +63,70 @@
       })
       .then(response => response.text())
       .then(text => {
-        // :::note / tip / warning 
-        text = text.replace(/:::note\s([\s\S]*?):::/g, '<div class="note">$1</div>');
-        text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
-        text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
-        text = text.replace(/:::idea\s([\s\S]*?):::/g, '<div class="idea">$1</div>');
-        text = text.replace(/:::theory\s([\s\S]*?):::/g, '<div class="theory">$1</div>');
+        /
+        // 1️⃣ まず最初に code block 専用の :::example を処理
         text = text.replace(/:::example\s([\s\S]*?):::/g, (match, p1) => {
-          // code
-          const codeMatch = p1.match(/```(\w+)?\n([\s\S]*?)```/);
+          // ```lang\n ... ``` の場合だけ code block として扱う
+          const codeMatch = p1.match(/^```(\w+)?\n([\s\S]*?)```$/m);
           if (codeMatch) {
             const lang = codeMatch[1] || '';
             const code = codeMatch[2];
             return `<div class="example"><pre><code class="language-${lang}">${code}</code></pre></div>`;
           } else {
-            // if no ``` xxx ``` elements,
-            return `<div class="example">${p1}</div>`;
+            // codeブロックがない場合は、そのまま example として
+            return `<div class="example">${p1.trim()}</div>`;
           }
         });
-        //Youtube embodyment
-        text = text.replace(/:::youtube\s([\s\S]*?):::/g, (match, p1) => {
 
+
+        // 2️⃣ 次に simple なブロック系（note, tip, warning, idea, theory）
+        text = text.replace(/:::note\s([\s\S]*?):::/g, '<div class="note">$1</div>');
+        text = text.replace(/:::tip\s([\s\S]*?):::/g, '<div class="tip">$1</div>');
+        text = text.replace(/:::warning\s([\s\S]*?):::/g, '<div class="warning">$1</div>');
+        text = text.replace(/:::idea\s([\s\S]*?):::/g, '<div class="idea">$1</div>');
+        text = text.replace(/:::theory\s([\s\S]*?):::/g, '<div class="theory">$1</div>');
+
+
+        // 3️⃣ YouTube 埋め込み
+        text = text.replace(/:::youtube\s([\s\S]*?):::/g, (match, p1) => {
           const videoIdMatch = p1.match(/v=([a-zA-Z0-9_-]+)/);
           if (videoIdMatch) {
             const videoId = videoIdMatch[1];
-            return `<div class="youtube-container">
-                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                  </div>`;
+            return `
+      <div class="youtube-container">
+        <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>`;
           } else {
             return `<div class="youtube-container">Invalid YouTube URL</div>`;
           }
         });
-        // Paper embodyment
-        text = text.replace(/:::paper\s([\s\S]*?):::/g, function (_, content) {
-          const line = content.trim();
-          // 「タイトル + URL」の抽出
-          const match = line.match(/^(.*?)\s*(?:[-–—|])\s*(https?:\/\/\S+)/);
-          if (!match) return `<div class="paper">${line}</div>`;
 
-          const title = match[1].trim();
-          const url = match[2].trim();
-          const domain = (new URL(url)).hostname.replace(/^www\./, '');
+
+        // 4️⃣ Paper 埋め込み（タイトル + URL）
+        text = text.replace(/:::paper\s([\s\S]*?):::/g, (match, content) => {
+          const line = content.trim();
+          const paperMatch = line.match(/^(.*?)\s*(?:[-–—|])\s*(https?:\/\/\S+)/);
+          if (!paperMatch) return `<div class="paper">${line}</div>`;
+
+          const title = paperMatch[1].trim();
+          const url = paperMatch[2].trim();
+          const domain = new URL(url).hostname.replace(/^www\./, '');
           const favicon = `https://s2.googleusercontent.com/s2/favicons?sz=64&domain=${domain}`;
 
           return `
-        <a class="paper" href="${url}" target="_blank" rel="noopener noreferrer">
-          <img src="${favicon}" alt="" class="paper-icon" />
-          <div class="paper-text">
-            <div class="paper-title">${title}</div>
-            <div class="paper-domain">${domain}</div>
-          </div>
-        </a>
-      `;
+    <a class="paper" href="${url}" target="_blank" rel="noopener noreferrer">
+      <img src="${favicon}" alt="" class="paper-icon" />
+      <div class="paper-text">
+        <div class="paper-title">${title}</div>
+        <div class="paper-domain">${domain}</div>
+      </div>
+    </a>`;
         });
 
-        // balock math and inline math
+
+        // 5️⃣ 最後に Math の一時置換
         const blockMath = [];
         text = text.replace(/\$\$([\s\S]+?)\$\$/g, (match, p1) => {
           blockMath.push(p1);
@@ -131,7 +138,6 @@
           inlineMath.push(p);
           return `@@INLINEMATH${inlineMath.length - 1}@@`;
         });
-
 
         // --- Markdown → HTML ---
         let html = marked.parse(text);
