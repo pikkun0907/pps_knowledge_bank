@@ -143,16 +143,17 @@ Therefore, we use the critic network to estimate the expected return for a given
 
 (1) **Exact value functions are unknown**
 
-    The true value function $Q^\pi(s,a), V^\pi(s)$ depends on the expectation over all possible future trajectories, which we generally cannot compute analytically in most RL problems.
+The true value function $Q^\pi(s,a), V^\pi(s)$ depends on the expectation over all possible future trajectories, which we generally cannot compute analytically in most RL problems.
 
 (2) **Sampling alone is noisy and high variance**
 
-    Monte Carlo estimates of returns $R_t$ are unbiased but have high variance.
+Monte Carlo estimates of returns $R_t$ are unbiased but have high variance.
 
-    Using a learned critic to approximate $V(s)$ allows us to reduce variance in the policy gradient.
+Using a learned critic to approximate $V(s)$ allows us to reduce variance in the policy gradient.
 
 (3) **Enables TD learning / bootstrapping**
-    By approximating the critic, we can update it incrementally using TD errors.
+
+By approximating the critic, we can update it incrementally using TD errors.
 
 :::
 
@@ -180,9 +181,12 @@ Actor network : $\pi_\theta$
 
 Critic network : $V_\phi$
 
-### TD(0)
+
 
 :::theory
+
+### TD(0)
+
 1. $\pi_\theta$でtrajectoryの生成 : $\tau$
 
 2. Update Critic parameter $\phi$
@@ -205,9 +209,11 @@ Critic network : $V_\phi$
 4. Iteration 1~3
 :::
 
-### GAE
+
 
 :::theory
+### GAE
+
 1. $\pi_\theta$でtrajectoryの生成 : $\tau$
 
 2. Update Critic parameter $\phi$
