@@ -113,7 +113,7 @@ body {
   font-weight: 900; 
   position: absolute;
   left: 20px;
-  top: 50%;
+  top: 5%;
   transform: translateY(-50%);
   font-size: 1.2rem;
 }
@@ -131,7 +131,7 @@ body {
 
 .theory::before { 
   color: #6f42c1; 
-  content: "\f1d9";   /* atom (science) */
+  content: "\f013";   /* atom (science) */
 }
 
 .note ol, .tip ol, .warning ol, .theory ol, .idea ol, .example ol {
