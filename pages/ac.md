@@ -111,7 +111,7 @@ $$A^{\pi}(s,a):=Q^{\pi}(s,a)-V^{\pi}(s)$$
     $$Q^\pi(s,a)=\mathbb E [r_t + \gamma V^\pi(s_{t+1})]$$
 
     実際の学習中は「期待値」を計算できない。よって、サンプルで近似する。つまり、実際に１ステップ行動したときのサンプル$(s,a,r,s')$に対して、
-    $$Q(s,a) \approx r + \gamma V(s')$$
+    $$Q(s,a) \approx r + \gamma V(s_{t+1})$$
     :::
 
 3. GAE
