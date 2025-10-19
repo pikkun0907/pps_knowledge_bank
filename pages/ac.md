@@ -7,7 +7,15 @@ We have an actor network $\pi_\theta$ that produce action given a certain observ
 
 Update parameter $\theta$ based on "Policy Gradient".
 
-$$\nabla_\theta J(\theta)=\mathbb E [\nabla_\theta \log\pi_\theta(a|s)\cdot A(s,a)]$$
+:::theory
+
+方策勾配の基本式 : $$J(\theta)=\mathbb E_{s\sim d^\pi,a\sim\pi_\theta}  [ A(s,a)]$$
+
+方策勾配定理により
+
+$$\nabla_\theta J(\theta)=\mathbb E _{s,a\sim\pi_\theta} [\nabla_\theta \log\pi_\theta(a|s)\cdot A(s,a)]$$
+
+:::
 
 where $A^{\pi_\theta}(s,a):=Q^{\pi_\theta}(s,a)-V^{\pi_\theta}(s)$. This $A$ is called "advantage function".
 

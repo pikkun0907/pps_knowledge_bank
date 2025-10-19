@@ -26,13 +26,14 @@ Recall that the update rule of policy gradient is
 
 :::theory
 
-$$\nabla_\theta J(\theta)=\mathbb E [\nabla_\theta \log\pi_\theta(a|s)\cdot A(s,a)]$$
+方策勾配の基本式 : $$J(\theta)=\mathbb E_{s\sim d^\pi,a\sim\pi_\theta}  [ A(s,a)]$$
+
+方策勾配定理により
+
+$$\nabla_\theta J(\theta)=\mathbb E _{s,a\sim\pi_\theta} [\nabla_\theta \log\pi_\theta(a|s)\cdot A(s,a)]$$
 
 :::
 
-In algorithm, the loss function is explicitly written as $J(\theta) \approx\log\pi_\theta​(a​∣s​)A_t(s,a)​$ but this is because we iterate the policy gradient until the loss function converges.
-
-Here, we expless the loss as
 
 $$J(\theta)\approx\mathbb E_{t}  ​[\log\pi_\theta​(a​∣s​)A_t(s,a)​]$$
 
