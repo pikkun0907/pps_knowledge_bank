@@ -7,13 +7,13 @@ body {
 
 /* --- h2 --- */
 h2.page {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #49aec9;
-    position: relative;
-    margin-top: 2em;
-    margin-bottom: 1em;
-    line-height: 1.3;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #49aec9;
+  position: relative;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3;
 }
 
 h2.page::before {
@@ -23,7 +23,8 @@ h2.page::before {
   bottom: -3px;
   width: 5px;
   height: 100%;
-  background:  #49aec9; /* カラフルアクセントバー */
+  background: #49aec9;
+  /* カラフルアクセントバー */
   border-radius: 2px;
 }
 
@@ -43,20 +44,21 @@ h3.page {
   background: #fff;
   padding: 20px;
   overflow-y: auto;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
 }
 
 
 #main {
-  flex-grow: 1;        
+  flex-grow: 1;
   padding: 30px;
   overflow-y: auto;
 }
+
 .content {
-    padding: 30px;
-    margin-left: auto;
-    margin-right: auto;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #graph {
@@ -65,37 +67,53 @@ h3.page {
 }
 
 #content {
-    padding: 30px;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
+  padding: 30px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#content p, #content div { margin-bottom: 1em; }
+#content p,
+#content div {
+  margin-bottom: 1em;
+}
 
-.note, .tip, .warning {
+.note,
+.tip,
+.warning {
   border-left: 6px solid;
-  padding: 15px 20px 15px 50px; 
+  padding: 15px 20px 15px 50px;
   margin: 20px 0;
   border-radius: 12px;
   font-size: 0.95rem;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   position: relative;
   transition: all 0.2s ease;
 }
 
-.note { border-color: #0078ff; background: linear-gradient(90deg, #e6f0ff, #ffffff); }
-.tip { border-color: #28a745; background: linear-gradient(90deg, #e6ffe6, #ffffff); }
-.warning { border-color: #dc3545; background: linear-gradient(90deg, #ffe6e6, #ffffff); }
+.note {
+  border-color: #0078ff;
+  background: linear-gradient(90deg, #e6f0ff, #ffffff);
+}
+
+.tip {
+  border-color: #28a745;
+  background: linear-gradient(90deg, #e6ffe6, #ffffff);
+}
+
+.warning {
+  border-color: #dc3545;
+  background: linear-gradient(90deg, #ffe6e6, #ffffff);
+}
 
 
 .note::before,
 .tip::before,
 .warning::before {
-  content: "\f129"; 
-  font-family: "Font Awesome 5 Free"; 
-  font-weight: 900; 
+  content: "\f129";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
   position: absolute;
   left: 20px;
   top: 25px;
@@ -104,36 +122,53 @@ h3.page {
 }
 
 
-.note::before { color: #0078ff; content: "\f05a"; }     /* info-circle */
-.tip::before { color: #28a745; content: "\f059"; }      /* check-circle */
-.warning::before { color: #dc3545; content: "\f071"; }  /* exclamation-triangle */
+.note::before {
+  color: #0078ff;
+  content: "\f05a";
+}
+
+/* info-circle */
+.tip::before {
+  color: #28a745;
+  content: "\f059";
+}
+
+/* check-circle */
+.warning::before {
+  color: #dc3545;
+  content: "\f071";
+}
+
+/* exclamation-triangle */
 
 /* --- 共通スタイル --- */
-.idea, .example, .theory {
+.idea,
+.example,
+.theory {
   border-left: 6px solid;
-  padding: 15px 20px 15px 50px; 
+  padding: 15px 20px 15px 50px;
   margin: 20px 0;
   border-radius: 12px;
   font-size: 0.95rem;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   position: relative;
   transition: all 0.2s ease;
 }
 
 /* --- 個別デザイン --- */
 .idea {
-  border-color: #ffb300; 
+  border-color: #ffb300;
   background: linear-gradient(90deg, #fff9e6, #ffffff);
 }
 
 .example {
-  border-color: #17a2b8; 
+  border-color: #17a2b8;
   background: linear-gradient(90deg, #e6faff, #ffffff);
 }
 
 .theory {
-  border-color: #6f42c1; 
+  border-color: #6f42c1;
   background: linear-gradient(90deg, #f3e6ff, #ffffff);
 }
 
@@ -141,8 +176,8 @@ h3.page {
 .idea::before,
 .example::before,
 .theory::before {
-  font-family: "Font Awesome 5 Free"; 
-  font-weight: 900; 
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
   position: absolute;
   left: 20px;
   top: 25px;
@@ -151,26 +186,40 @@ h3.page {
 }
 
 /* --- 各アイコン指定 --- */
-.idea::before { 
-  color: #ffb300; 
-  content: "\f0eb";   /* lightbulb */
+.idea::before {
+  color: #ffb300;
+  content: "\f0eb";
+  /* lightbulb */
 }
 
-.example::before { 
-  color: #17a2b8; 
-  content: "\f121";   /* code */
+.example::before {
+  color: #17a2b8;
+  content: "\f121";
+  /* code */
 }
 
-.theory::before { 
-  color: #6f42c1; 
-  content: "\f013";   /* atom (science) */
+.theory::before {
+  color: #6f42c1;
+  content: "\f013";
+  /* atom (science) */
 }
 
-.note ol, .tip ol, .warning ol, .theory ol, .idea ol, .example ol {
+.note ol,
+.tip ol,
+.warning ol,
+.theory ol,
+.idea ol,
+.example ol {
   margin: 10px 0;
   padding-left: 1.5em;
 }
-.note li, .tip li, .warning li, .theory li, .idea li, .example li {
+
+.note li,
+.tip li,
+.warning li,
+.theory li,
+.idea li,
+.example li {
   margin-bottom: 0.5em;
 }
 
@@ -189,7 +238,10 @@ h3.page {
   opacity: 0.8;
   transition: opacity 0.2s ease;
 }
-.copy-button:hover { opacity: 1; }
+
+.copy-button:hover {
+  opacity: 1;
+}
 
 pre {
   position: relative;
@@ -200,7 +252,8 @@ pre {
 
 .youtube-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
+  /* 16:9 */
   height: 0;
   overflow: hidden;
   max-width: 100%;
@@ -215,48 +268,139 @@ pre {
   height: 100%;
 }
 
+/* paper embodyment */
+.paper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .1s ease, box-shadow .2s ease;
+}
+
+.paper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.paper-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.paper-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.paper-title {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.paper-domain {
+  font-size: 13px;
+  color: #666;
+}
 
 
-#content ul { padding-left: 1.2rem; }
-#content li { margin: 0.5rem 0; }
+
+#content ul {
+  padding-left: 1.2rem;
+}
+
+#content li {
+  margin: 0.5rem 0;
+}
 
 #content img {
-      max-width: 80%;
-      height: auto;
-      display: block;
-      margin: 10px auto;
-    }
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
 
 /****************** Side bar *********************/
 /* リスト・階層 */
-#sidebar ul { list-style: none; padding-left: 0; margin: 0; }
-#sidebar li { margin: 5px 0; }
-#sidebar li.has-sub > ul { display: none; }
-#sidebar li.has-sub.open > ul { display: block; }
-#sidebar ul ul { border-left: 2px solid #e0e0e0; padding-left: 0.4rem; }
+#sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#sidebar li {
+  margin: 5px 0;
+}
+
+#sidebar li.has-sub>ul {
+  display: none;
+}
+
+#sidebar li.has-sub.open>ul {
+  display: block;
+}
+
+#sidebar ul ul {
+  border-left: 2px solid #e0e0e0;
+  padding-left: 0.4rem;
+}
 
 /* カード風 */
-#sidebar ul > li {
+#sidebar ul>li {
   background: #fff;
   border-radius: 10px;
   padding: 10px 15px;
   margin: 10px 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-#sidebar ul > li:hover {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+#sidebar ul>li:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
 
 /* リンク */
-a { color: #444; text-decoration: none; transition: all 0.2s; }
-a:hover { color: #0078ff; }
-a.active { color: #0078ff; font-weight: 600; border-bottom: 2px solid #0078ff; }
+a {
+  color: #444;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover {
+  color: #0078ff;
+}
+
+a.active {
+  color: #0078ff;
+  font-weight: 600;
+  border-bottom: 2px solid #0078ff;
+}
 
 /* スマホ */
-@media(max-width:800px){
-  body { flex-direction: column; }
-  #sidebar { width: 100%; height: auto; box-shadow: none; border-bottom:1px solid #ddd; }
-  #main { margin-left: 0; padding: 20px; }
+@media(max-width:800px) {
+  body {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #main {
+    margin-left: 0;
+    padding: 20px;
+  }
 }
