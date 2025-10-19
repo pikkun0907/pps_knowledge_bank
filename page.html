@@ -115,14 +115,14 @@
           const domain = new URL(url).hostname.replace(/^www\./, '');
           const favicon = `https://s2.googleusercontent.com/s2/favicons?sz=64&domain=${domain}`;
 
-          return `
-          <a class="paper" href="${url}" target="_blank" rel="noopener noreferrer">
+          return `<div class="paper">
+          <a href="${url}" target="_blank" rel="noopener noreferrer">
             <img src="${favicon}" alt="" class="paper-icon" />
             <div class="paper-text">
               <div class="paper-title">${title}</div>
               <div class="paper-domain">${domain}</div>
             </div>
-          </a>`;
+          </a></div>`;
         });
 
 
@@ -142,6 +142,8 @@
 
         // --- Markdown → HTML ---
         let html = marked.parse(text);
+
+        console.log("Bhtml paper:", html);
 
         html = html.replace(/@@BLOCKMATH(\d+)@@/g, (match, idx) => `$$${blockMath[idx]}$$`);
         html = html.replace(/@@INLINEMATH(\d+)@@/g, (match, idx) => `$${inlineMath[idx]}$`);
