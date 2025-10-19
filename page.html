@@ -63,7 +63,7 @@
       })
       .then(response => response.text())
       .then(text => {
-        /
+
         // 1️⃣ まず最初に code block 専用の :::example を処理
         text = text.replace(/:::example\s([\s\S]*?):::/g, (match, p1) => {
           // ```lang\n ... ``` の場合だけ code block として扱う
@@ -138,6 +138,7 @@
           inlineMath.push(p);
           return `@@INLINEMATH${inlineMath.length - 1}@@`;
         });
+
 
         // --- Markdown → HTML ---
         let html = marked.parse(text);
