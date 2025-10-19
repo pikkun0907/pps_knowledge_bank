@@ -103,7 +103,7 @@
           }
         });
 
-
+        console.log("Before paper:", text);
         // 4️⃣ Paper 埋め込み（タイトル + URL）
         text = text.replace(/:::paper\s([\s\S]*?):::/g, (match, content) => {
           const line = content.trim();
@@ -116,13 +116,13 @@
           const favicon = `https://s2.googleusercontent.com/s2/favicons?sz=64&domain=${domain}`;
 
           return `
-    <a class="paper" href="${url}" target="_blank" rel="noopener noreferrer">
-      <img src="${favicon}" alt="" class="paper-icon" />
-      <div class="paper-text">
-        <div class="paper-title">${title}</div>
-        <div class="paper-domain">${domain}</div>
-      </div>
-    </a>`;
+          <a class="paper" href="${url}" target="_blank" rel="noopener noreferrer">
+            <img src="${favicon}" alt="" class="paper-icon" />
+            <div class="paper-text">
+              <div class="paper-title">${title}</div>
+              <div class="paper-domain">${domain}</div>
+            </div>
+          </a>`;
         });
 
 
