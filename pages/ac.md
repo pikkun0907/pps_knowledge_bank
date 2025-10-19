@@ -140,6 +140,7 @@ However, we cannot compute the value function $V(s)$ analitically.
 Therefore, we use the critic network to estimate the expected return for a given state or state-action pair, which is then used to compute the advantage for policy updates.
 
 :::note
+The reasons why we need to estimate the value function.
 
 (1) **Exact value functions are unknown**
 
@@ -181,11 +182,11 @@ Actor network : $\pi_\theta$
 
 Critic network : $V_\phi$
 
-
+### TD(0)
 
 :::theory
 
-### TD(0)
+TD(0)
 
 1. $\pi_\theta$でtrajectoryの生成 : $\tau$
 
@@ -210,9 +211,9 @@ Critic network : $V_\phi$
 :::
 
 
-
-:::theory
 ### GAE
+:::theory
+GAE
 
 1. $\pi_\theta$でtrajectoryの生成 : $\tau$
 
