@@ -103,7 +103,7 @@
           }
         });
 
-        console.log("Before paper:", text);
+
         // 4️⃣ Paper 埋め込み（タイトル + URL）
         text = text.replace(/:::paper\s([\s\S]*?):::/g, (match, content) => {
           const line = content.trim();
@@ -138,7 +138,7 @@
           inlineMath.push(p);
           return `@@INLINEMATH${inlineMath.length - 1}@@`;
         });
-
+        console.log("Before paper:", text);
 
         // --- Markdown → HTML ---
         let html = marked.parse(text);

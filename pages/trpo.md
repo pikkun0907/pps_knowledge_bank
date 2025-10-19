@@ -42,3 +42,9 @@ Recall that the update rule of policy gradient is
 
 :::
 
+In algorithm, the loss function is explicitly written as $J(\theta) \approx\log\pi_\theta​(a​∣s​)A_t(s,a)​$ but this is because we iterate the policy gradient until the loss function converges.
+
+Here, we expless the loss as
+
+$$J(\theta)\approx\mathbb E_{t}  ​[\log\pi_\theta​(a​∣s​)A_t(s,a)​]$$
+
