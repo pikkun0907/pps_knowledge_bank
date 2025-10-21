@@ -72,7 +72,7 @@ $$
 
 :::
 
-:::theory
+:::example
 
 (ex) Distance between ellipsoids
 
@@ -173,6 +173,34 @@ s.t.& ~~ \begin{pmatrix} \text{diag}(b-Ax) &  &\\  & \text{diag}(Ax-b) &\\ & & \
 \end{align}
 $$
 
-:::theory
+:::example
+(ex) Eigenvalue Minimization
+$$
+\begin{align}
+\text{minimize}& ~~ \lambda_{max}(A(x))\\
+
+\end{align}
+$$
+where $A(x) =A_0+A_1x_1 + \cdots +A_nx_n$, $A_i\in\mathbb S^k$.
+
+This is equivalent to the SDP
+$$
+\begin{align}
+\text{minimize}& ~~ \{ t: A(x) \preceq tI\}\\
+
+\end{align}
+$$
+
+:::
+
+### Hidden SDP Constraints
+
+:::idea
+
+$$X\succeq Y^{-1}\iff \begin{pmatrix} X&I\\ I &  Y \end{pmatrix}\succeq 0 $$
+
+$$X\succeq YY^T \iff \begin{pmatrix} X&Y\\ Y^T &  I \end{pmatrix}\succeq 0 $$
+
+$$(AXB)^TAXB+CXD+(CXD)^T\succeq Y\iff \begin{pmatrix} Y-CXS-(CXD)^T&(AXB)^T\\ AXB &  I \end{pmatrix}\succeq 0 $$
 
 :::
