@@ -337,15 +337,15 @@ ul.sidebar {
   margin: 0;
 }
 
-li.sidebar {
+ul.sidebar>li {
   margin: 5px 0;
 }
 
-li.sidebar.has-sub>ul {
+ul.sidebar>li.has-sub>ul {
   display: none;
 }
 
-li.sidebar.has-sub.open>ul {
+ul.sidebar>li.has-sub.open>ul {
   display: block;
 }
 
