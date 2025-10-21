@@ -245,3 +245,16 @@ s.t.& ~~ -(A_ix+b_i, c_i^Tx+d_i)\preceq_{K_i}0 , ~~Fx=g
 $$
 
 Where $K_i = \{(u,v)\mid ||u||_2\le v\}$
+
+### Evey convex problem is Conic
+
+$\text{inf}_{x\in C}f_0(x)$ : An arbitary convex optimization where $C$ is convex set
+
+$$\begin{align}&\text{inf} \{t:f_0(x)\le t, x\in C\}\\
+\iff &\text{inf} \{t:(t,x)\in B\} ~~ \text{where} ~~B=\{(x,t) : f_0(x)\le t, x\in C\} \\
+\iff &\text{inf} \{t:s=1, (s, t,x)\succeq_K0 \} ~~ \text{where} ~~K=\{(s,x,t) : (x/s, t/s)\in B, s\ge0\} \\
+\end{align}$$
+
+Cone: 原点を含み正のスケーリングに対して閉じている集合
+
+$$(s,t,x)\in K \Rightarrow \alpha(s,t,x)\in K ~~\text {for any} ~\alpha, (0,0,0)\in K$$
