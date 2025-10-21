@@ -72,9 +72,9 @@ $$
 
 :::
 
-:::info
+:::theory
 
-Distance between ellipsoids
+(ex) Distance between ellipsoids
 
 $$
 \begin{align}
@@ -107,7 +107,7 @@ $$
 <mark>Every LP is a SOCP with $A_i=0, b_i=0$</mark>
 
 
-<mark>Every QCQP is a SOCP with $C_i=0$</mark>
+<mark>Every QCQP is a SOCP with $c_i=0$</mark>
 
 ### Hidden SOCP constraints
 
@@ -135,6 +135,44 @@ where $F_1,\cdots,F_n, G \in \mathbb S^k$
 
 ### Every SOCP is an SDP
 
+SOCP is
 
+$$
+\begin{align}
+\text{minimize}& ~~ f^Tx\\
+s.t.& ~~ ||A_ix-b_i||_2\le c_i^Tx+d_i, ~~Fx=g
+\end{align}
+$$
 
+is equivalent to 
+
+$$||A_ix-b_i||_2\le c_i^Tx+d_i\iff \begin{pmatrix} c_i^Tx+d_i & (A_ix-b_i)^T \\ A_ix-b_iI & (c_i^Tx+d_i)I \end{pmatrix} \succeq 0$$
+
+:::note
+From Shur's lemma:
+
+$$\begin{pmatrix} \alpha & \beta^T \\ \beta & \alpha I \end{pmatrix} \iff \alpha \ge \beta^T\alpha^{-1}I\beta \iff \alpha^2\ge||\beta||_2^2\iff\alpha \ge||\beta||_2$$
+:::
 ### Every LP is an SDP
+
+LP is
+
+$$
+\begin{align}
+\text{minimize}& ~~ c^Tx+d\\
+s.t.& ~~ Cx\le g , ~~Ax=b
+\end{align}
+$$
+
+is equivalent to
+
+$$
+\begin{align}
+\text{minimize}& ~~ c^Tx+d\\
+s.t.& ~~ \begin{pmatrix} \text{diag}(b-Ax) &  &\\  & \text{diag}(Ax-b) &\\ & & \text{diag}(g-Cx)\end{pmatrix}\succeq 0
+\end{align}
+$$
+
+:::theory
+
+:::
