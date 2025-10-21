@@ -153,6 +153,7 @@ From Shur's lemma:
 
 $$\begin{pmatrix} \alpha & \beta^T \\ \beta & \alpha I \end{pmatrix} \iff \alpha \ge \beta^T\alpha^{-1}I\beta \iff \alpha^2\ge||\beta||_2^2\iff\alpha \ge||\beta||_2$$
 :::
+
 ### Every LP is an SDP
 
 LP is
@@ -204,3 +205,43 @@ $$X\succeq YY^T \iff \begin{pmatrix} X&Y\\ Y^T &  I \end{pmatrix}\succeq 0 $$
 $$(AXB)^TAXB+CXD+(CXD)^T\succeq Y\iff \begin{pmatrix} Y-CXS-(CXD)^T&(AXB)^T\\ AXB &  I \end{pmatrix}\succeq 0 $$
 
 :::
+
+## Generalized Inequalities
+
+:::theory
+
+$$
+\begin{align}
+\text{minimize}& ~~ f_0(x)\\
+s.t.& ~~ f_i(x)\preceq_{K_i}0 , ~~Ax=b
+\end{align}
+$$
+
+<mark> $f_0$ is convex, $f_i$ is $K_i$-convex</mark>
+:::
+
+:::note
+$$f_i(x)\preceq_{K_i}0 \iff -f_i(x)\in K_i$$
+:::
+
+### LP in Conic form
+
+$$
+\begin{align}
+\text{minimize}& ~~ c^Tx\\
+s.t.& ~~ Fx+g\preceq_{K_i}0 , ~~Ax=b
+\end{align}
+$$
+
+Where $K_i = \mathbb R_+$
+
+### SOCP in Conic form
+
+$$
+\begin{align}
+\text{minimize}& ~~ f^Tx\\
+s.t.& ~~ -(A_ix+b_i, c_i^Tx+d_i)\preceq_{K_i}0 , ~~Fx=g
+\end{align}
+$$
+
+Where $K_i = \{(u,v)\mid ||u||_2\le v\}$
