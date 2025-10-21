@@ -2,32 +2,58 @@
 <ul>
   <li><a href="index.html">Home</a></li>
 </ul>
+<h2>Convex Optimization</h2>
+<ul class="sidebar">
+  <li><a href="page.html?topic=conv_basics">Basics</a></li>
+  <li><a href="page.html?topic=conv_opt_problem">Convex Optimization Problem</a></li>
+  <li><a href="page.html?topic=lagrange">Lagrange Multipliers</a></li>
+  <li><a href="page.html?topic=kkt">KKT Conditions</a></li>
+</ul>
 
-<h2>Contents</h2>
-<ul id="sidebar">
+<h2>Controlls</h2>
+<ul class="sidebar">
+  <li>MPC
+  </li>
+  <!-- Reinforcement Learning -->
+  <li>Reinforcement Learning
+    <ul>
+      <li><a href="page.html?topic=notyet">Q-learning</a></li>
+      <li><a href="page.html?topic=notyet">DQN</a></li>
+      <li><a href="page.html?topic=notyet">TD3</a></li>
+      <li><a href="page.html?topic=ac">Actor-Critic Network</a></li>
+      <li><a href="page.html?topic=trpo">TRPO</a></li>
+      <li><a href="page.html?topic=ppo">PPO</a></li>
+      <li><a href="page.html?topic=sac">SAC</a></li>
+      <li><a href="page.html?topic=ddpg">DDPG</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Robotic-AI</h2>
+<ul class="sidebar">
   <!-- Supervised -->
   <li>Supervised Learning
     <ul>
-        <li><a href="page.html?topic=pca">PCA</a></li>
-        <li><a href="page.html?topic=ica">ICA</a></li>
-        <li><a href="page.html?topic=dbscan">DBSCAN</a></li>
-        <li><a href="page.html?topic=gmr">GMR</a></li>
-        <li><a href="page.html?topic=svm">SVM</a></li>
-        <li>Deep Learning
+      <li><a href="page.html?topic=pca">PCA</a></li>
+      <li><a href="page.html?topic=ica">ICA</a></li>
+      <li><a href="page.html?topic=dbscan">DBSCAN</a></li>
+      <li><a href="page.html?topic=gmr">GMR</a></li>
+      <li><a href="page.html?topic=svm">SVM</a></li>
+      <li>Deep Learning
         <ul>
-            <li><a href="page.html?topic=perceptron">Perceptron</a></li>
-            <li><a href="page.html?topic=mlp">MLP</a></li>
-            <li><a href="page.html?topic=nn">Neural Network (NN)</a></li>
-            <li><a href="page.html?topic=cnn">Convolutional Neural Network (CNN)</a></li>
-            <li><a href="page.html?topic=rnn">Recurrent Neural Network (RNN)</a></li>
-            <li><a href="page.html?topic=autoencoder">Autoencoder</a></li>
-            <li><a href="page.html?topic=resnet">ResNet</a></li>
-            <li><a href="page.html?topic=transformer">Transformer (Architecture)</a></li>
-            <li><a href="page.html?topic=attention">Attention Mechanism</a></li>
+          <li><a href="page.html?topic=perceptron">Perceptron</a></li>
+          <li><a href="page.html?topic=mlp">MLP</a></li>
+          <li><a href="page.html?topic=nn">Neural Network (NN)</a></li>
+          <li><a href="page.html?topic=cnn">Convolutional Neural Network (CNN)</a></li>
+          <li><a href="page.html?topic=rnn">Recurrent Neural Network (RNN)</a></li>
+          <li><a href="page.html?topic=autoencoder">Autoencoder</a></li>
+          <li><a href="page.html?topic=resnet">ResNet</a></li>
+          <li><a href="page.html?topic=transformer">Transformer (Architecture)</a></li>
+          <li><a href="page.html?topic=attention">Attention Mechanism</a></li>
         </ul>
-        </li>
+      </li>
     </ul>
-    </li>
+  </li>
 
 
   <!-- Unsupervised -->
@@ -85,37 +111,24 @@
       </li>
     </ul>
   </li>
-
-  <!-- Reinforcement Learning -->
-  <li>Reinforcement Learning
-    <ul>
-        <li><a href="page.html?topic=notyet">Q-learning</a></li>
-        <li><a href="page.html?topic=notyet">DQN</a></li>
-        <li><a href="page.html?topic=notyet">TD3</a></li>
-      <li><a href="page.html?topic=ac">Actor-Critic Network</a></li>
-      <li><a href="page.html?topic=trpo">TRPO</a></li>
-      <li><a href="page.html?topic=ppo">PPO</a></li>
-      <li><a href="page.html?topic=sac">SAC</a></li>
-      <li><a href="page.html?topic=ddpg">DDPG</a></li>
-    </ul>
-  </li>
 </ul>
 
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
 
-  const subMenus = document.querySelectorAll("#sidebar li > ul");
-  subMenus.forEach(sub => {
-    const parent = sub.parentElement;
-    parent.classList.add("has-sub");
+    const subMenus = document.querySelectorAll("#sidebar li > ul");
+    subMenus.forEach(sub => {
+      const parent = sub.parentElement;
+      parent.classList.add("has-sub");
 
 
-    const toggleTarget = parent.firstElementChild;
-    toggleTarget.addEventListener("click", e => {
-      if (e.target.tagName.toLowerCase() === "a") return;
-      e.stopPropagation();
-      parent.classList.toggle("open");
+      const toggleTarget = parent.firstElementChild;
+      toggleTarget.addEventListener("click", e => {
+        if (e.target.tagName.toLowerCase() === "a") return;
+        e.stopPropagation();
+        parent.classList.toggle("open");
+      });
     });
   });
-});
 </script>
