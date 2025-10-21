@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <title>Knowledge Bank</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
-<body>
-    <nav class="sidebar" id="sidebar"></nav>
 
-    <main class="content">
-      <h1>Welcome to Knowledge Bank</h1>
-      <p class="page-description">
-        Necessary knowledge for all roboticists.
-        Explore core concepts, algorithms, and generative models in robotics and AI.
+<body>
+  <nav class="sidebar" id="sidebar"></nav>
+
+  <main class="content">
+    <h1>Welcome to Knowledge Bank</h1>
+    <p class="page-description">
+      Necessary knowledge for all roboticists.
+      Explore core concepts, algorithms, and generative models in robotics and AI.
+
+      For now, this page is just memos to
+      keep my understanding fresh.
     </p>
-        <h2>Visualization of contents connections</h2>
-      <div id="graph"></div>
-      <script src="script.js"></script>
-    </main>
+    <h2>Visualization of contents connections</h2>
+    <div id="graph"></div>
+    <script src="script.js"></script>
+  </main>
 
   <script>
     fetch("sidebar.html")
@@ -26,4 +31,5 @@
       .then(html => document.getElementById("sidebar").innerHTML = html);
   </script>
 </body>
+
 </html>
