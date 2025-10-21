@@ -121,18 +121,35 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // すべてのサイドバーリストを取得
+    const sidebarLists = document.querySelectorAll("ul.sidebar");
 
-    const subMenus = document.querySelectorAll("#sidebar li > ul");
-    subMenus.forEach(sub => {
-      const parent = sub.parentElement;
-      parent.classList.add("has-sub");
+    sidebarLists.forEach(ul => {
+      // リスト内のすべての 'li' 要素を走査
+      const listItems = ul.querySelectorAll("li");
 
+      listItems.forEach(li => {
+        // 直下に 'ul' (サブメニュー) が存在するかチェック
+        const subMenu = li.querySelector(":scope > ul");
 
-      const toggleTarget = parent.firstElementChild;
-      toggleTarget.addEventListener("click", e => {
-        if (e.target.tagName.toLowerCase() === "a") return;
-        e.stopPropagation();
-        parent.classList.toggle("open");
+        if (subMenu) {
+          // サブメニューを持つ親リスト項目にマーカークラスを追加
+          li.classList.add("has-sub");
+
+          // クリックイベントリスナーを設定
+          li.addEventListener("click", e => {
+            // クリックされた要素がアンカータグ(a)の場合は、リンク遷移を優先しトグル処理を行わない
+            if (e.target.tagName.toLowerCase() === "a") {
+              return;
+            }
+
+            // イベントの伝播を停止し、親の開閉イベントが連鎖しないようにする
+            e.stopPropagation();
+
+            // 'open' クラスをトグルして、サブメニューの表示/非表示を切り替える
+            li.classList.toggle("open");
+          });
+        }
       });
     });
   });

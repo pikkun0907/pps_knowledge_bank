@@ -331,31 +331,31 @@ pre {
 
 /****************** Side bar *********************/
 /* リスト・階層 */
-.sidebar ul {
+ul.sidebar {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.sidebar li {
+li.sidebar {
   margin: 5px 0;
 }
 
-.sidebar li.has-sub>ul {
+li.sidebar.has-sub>ul {
   display: none;
 }
 
-.sidebar li.has-sub.open>ul {
+li.sidebar.has-sub.open>ul {
   display: block;
 }
 
-.sidebar ul ul {
+ul.sidebar ul {
   border-left: 2px solid #e0e0e0;
   padding-left: 0.4rem;
 }
 
 /* カード風 */
-.sidebar ul>li {
+ul.sidebar>li {
   background: #fff;
   border-radius: 10px;
   padding: 10px 15px;
@@ -364,7 +364,7 @@ pre {
   cursor: pointer;
 }
 
-.sidebar ul>li:hover {
+ul.sidebar>li:hover {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
