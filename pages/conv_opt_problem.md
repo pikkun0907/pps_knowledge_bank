@@ -246,7 +246,7 @@ $$
 
 Where $K_i = \{(u,v)\mid ||u||_2\le v\}$
 
-### Evey convex problem is Conic
+### Every convex problem is Conic
 
 $\text{inf}_{x\in C}f_0(x)$ : An arbitary convex optimization where $C$ is convex set
 
