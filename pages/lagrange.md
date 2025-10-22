@@ -21,12 +21,13 @@ $\lambda_i\in \mathbb R_+^m$ and $\mu_i\in \mathbb R^p$ are lagrange multipliers
 * If P is convex opt problem, the lagrangian is convex in x for any fixed ($\lambda, \mu$).
 * ($\lambda, \mu$) are choosen to maximize $\mathcal L (x,\lambda, \mu)$, thus the optimizer is at saddle point.
 
-### Primal Problem
+## Primal Problem
 
 :::theory
 
-* $f(x) = \sup_{\lambda\in \mathbb R_+^m, \mu\in \mathbb R^p} \mathcal L(x,\lambda, \mu)$
-* $\inf \text{P} = \inf_{x\in\mathbb R^n}f(x)=\inf_x\sup_{\lambda, \mu}\mathcal L(x,\lambda,\mu)$
+$$f(x) = \sup_{\lambda\in \mathbb R_+^m, \mu\in \mathbb R^p} \mathcal L(x,\lambda, \mu)$$
+
+$$\inf \text{P} = \inf_{x\in\mathbb R^n}f(x)=\inf_x\sup_{\lambda, \mu}\mathcal L(x,\lambda,\mu)$$
 
 :::
 
@@ -53,12 +54,13 @@ $g(\lambda)=\inf_x\mathcal L (x,\lambda)$を定義して、たくさんある、
 
 :::
 
-### Dual problem
+## Dual problem
 
 :::theory
 
-* $g(x) = \inf_{x} \mathcal L(x,\lambda, \mu)$
-* $\sup \text{D} = \sup_{\lambda, \mu}g(\lambda, \mu)=\sup_{\lambda, \mu}\inf_x\mathcal L(x,\lambda,\mu)$
+$$g(x) = \inf_{x} \mathcal L(x,\lambda, \mu)$$
+
+$$\sup \text{D} = \sup_{\lambda, \mu}g(\lambda, \mu)=\sup_{\lambda, \mu}\inf_x\mathcal L(x,\lambda,\mu)$$
 
 :::
 
@@ -71,19 +73,55 @@ g(\lambda, \mu)
 \le \sup_{\substack{\hat{\lambda} ,~ \hat{\mu}}} \mathcal{L}(x, \hat{\lambda}, \hat{\mu})=f(x)
 $$
 
+![weak duality](imgs/weak_duality.png)
+
 ### Strong Duality 
 
 If $\inf P =\sup D=0 $, then it holds strong duality.
 
 * Always hold if P is a convex problem satisfying a <mark><constraint qualification</mark>. 
 
-:::info
+:::note
 
 Slater's constraint qualification holds if thereexists $x_s$ with
 
-* $f_i(x_s)< 0$
-* $h_i(x_s)=0$
+$$f_i(x_s)< 0$$
+$$h_i(x_s)=0$$
 
 :::
+
+## Dual cones
+
+:::theory
+If $K$ is a cone, then the set
+
+$$K^* ={y\in\mathcal R^n : x^Ty\ge 0, \forall{x}}\in K$$
+
+is the dual cone of $K$.
+:::
+
+![dualcone](imgs/dualcone.jpg)
+
+### Proposition
+
+* $K^*$ is closed and convex
+* $K_2 \subseteq　K_1 \Rightarrow  K_1^* \subseteq　K_2^* $
+* $K^{**}=\text{cl}(\text{conv}(K))$
+
+$\text{conv}(K)$: Kを内包した最小の閉包  /      $\text{cl}(A)$ : Aを含む最小の閉集合
+
+:::note
+$K^{**}$ は「凸かつ閉」な形に整える操作になる。$K$がconvexでなくても良い。
+
+$K^{*}$は、もともと必ず凸かつ閉
+
+$K^{**}$は、もとの$K$の凸かつ閉な部分だけ生き残る
+
+If $K$ is proper convex, then $K^*$ is proper and $K=K^{**}$
+:::
+
+
+
+
 
 
