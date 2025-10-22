@@ -155,7 +155,7 @@ $$\text{D: } ~~\sup_{\lambda, \mu} g(x): ~~g(x) = \inf_{x} \mathcal L(x,\lambda,
 
 **Why $\lambda_i \in K_i^*$ ??**
 
-$f_0(x)+\sum^m\lambda_i^Tf_i(x)$において、もし、$f_i(x)\preceq_{K_i}0$であれば、$\sum^m\lambda_i^Tf_i(x)\le0$となるから、$f_0(x)$より小さくなるはずである。
+$f_0(x)+\sum^m\lambda_i^Tf_i(x)$において、もし、$f_i(x)\preceq_{K_i}0$であれば、$f_0(x)$より小さくなるはずだから、$\sum^m\lambda_i^Tf_i(x)\le0$となる。
 
 よって、$f_i(x)\preceq_{K_i}0\iff f_i(x)\in -K_i$を満たすためには、
 
