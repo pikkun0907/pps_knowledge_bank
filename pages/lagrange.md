@@ -117,11 +117,70 @@ $K^{*}$は、もともと必ず凸かつ閉
 
 $K^{**}$は、もとの$K$の凸かつ閉な部分だけ生き残る
 
-If $K$ is proper convex, then $K^*$ is proper and $K=K^{**}$
+If $K$ is proper convex cone, then $K^*$ is proper and $K=K^{**}$
+:::
+
+## Problems Generalized Inequalities
+
+:::theory
+
+$$
+\begin{align}
+\text{minimize}& ~~ f_0(x)\\
+s.t.& ~~ f_i(x)\preceq_{K_i}0 , ~~h_i(x)=0
+\end{align}
+$$
+
+<mark> $f_0$ is convex, $f_i$ is $K_i$-convex. $K_i \subseteq \mathbb R^{r_i}$ is a proper convex cone.</mark>
+
+
 :::
 
 
+* Lagrange multiplier $\lambda_i \in K_i^*$ to $f_i(x)\preceq_{K_i}0 $
+* Lagrange multiplier $\mu_i\in\mathbb R$ to $h_i(x) =0$
+
+Then, the lagurangian becomes
+
+$$\mathcal L (x,\lambda, \mu) = f_0(x) + \sum_{i}^m \lambda_i^Tf_i(x)+\sum_{i=0}^p\mu_ih_i(x)$$
+
+The primal and dual problems are,
+
+$$\text{P: } ~~\inf_x f(x): ~~f(x) = \sup_{\lambda\in \mathbb R_+^m, \mu\in \mathbb R^p} \mathcal L(x,\lambda, \mu)$$
+
+$$\text{D: } ~~\sup_{\lambda, \mu} g(x): ~~g(x) = \inf_{x} \mathcal L(x,\lambda, \mu)$$
 
 
+:::idea
+
+**Why $\lambda_i \in K_i^*$ ??**
+
+$f_0(x)+\sum^m\lambda_i^Tf_i(x)$において、もし、$f_i(x)\preceq_{K_i}0$であれば、$\sum^m\lambda_i^Tf_i(x)\le0$となるから、$f_0(x)$より小さくなるはずである。
+
+よって、$f_i(x)\preceq_{K_i}0\iff f_i(x)\in -K_i$を満たすためには、
+
+$$ \langle\lambda_i, z\rangle\le 0 ~~~\forall z\in -K_i $$
+
+を満たす必要がある。
+
+![img](imgs/lambda_in_dualcone.jpg)
+
+この図において、$z$は$-K_i$のところから来ており、これと$\lambda_i$の内積が0以下となるには、$\lambda_i$が$K_i^*$から来ている必要がある。
+
+
+By analitically, we can derive $\lambda_i \in K_i^*$ by
+
+$$\begin{align}
+
+&\lambda_i \in K_i' \\
+
+\text{where} ~~ K'_i &= \{y \mid  \langle y, z\rangle \le0, \forall z\in -K_i\}\\
+&=\{y \mid  \langle y, -x\rangle\le0 , \forall x\in K_i\}\\
+&= \{y \mid  \langle y, x\rangle\ge0 , \forall x\in K_i\}\\
+&= K_i^*
+
+\end{align}$$
+
+:::
 
 
