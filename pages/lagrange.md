@@ -95,7 +95,7 @@ $$h_i(x_s)=0$$
 :::theory
 If $K$ is a cone, then the set
 
-$$K^* ={y\in\mathcal R^n : x^Ty\ge 0, \forall{x}}\in K$$
+$$K^* =\{y\in\mathcal R^n : x^Ty\ge 0, \forall{x}\}\in K$$
 
 is the dual cone of $K$.
 :::
