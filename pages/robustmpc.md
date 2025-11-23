@@ -39,3 +39,88 @@ $$
 
 where $(x, u) \in \mathbb X \times \mathbb U, w\in\mathbb W$.
 
+Separate the avialiable control authority into two parts:
+
+1. Noise free system: $z^+ = Az +Bv$
+2. Error between real($x$) and nominal($z$) state: $e^+ = (A+BK)e+w$
+
+---
+
+We have **nominal system**, noise-free system:
+
+$$z_{i+1} = Az_i+Bv_i$$
+
+Define a **tracking controller**, to keep the real trajectory close to the nominal,
+
+$$u_i = K(x_i-z_i)+v_i$$
+
+This is the controll policy for tube-MPC. Ckeck the picture above again.
+
+Define the error $e_i = x_i -z_i$.
+
+$$\begin{split}
+e_{i+1} &= x_{i+1} - z_{i+1}\\
+&=Ax_i+Bu_i+w_i-Az_i-Bv_i\\
+&=(A+BK)(x_i-z_i) + w_i\\
+&=(A+BK)e_i +w_i
+
+\end{split}
+$$
+
+$A+BK$ are stable and $w_i$ is bounded (since $w_i\in\mathbb W$), therefore, there is some set $\mathcal E$ that $e$ will stay inside for all time.
+
+![Sample image](imgs/robustmpc2.png "Sample imgs")
+
+Therefore, we can know that once we have a nominal trajectory, the real trajectory is somewhere near the nominal trajectory: $x_i \in z_i \oplus \mathcal E$.
+
+This is because we plan to apply the controller $u_i = K(x_i-z_i)+v_i$.
+
+---
+
+### Conmupte the set $\mathcal E$ that the error will remain inside
+
+To compute the set $\mathcal E$, we want to know the **minimal** robust invariant set.
+
+Consider the system $x^+ = Ax +w, w\in \mathbb W$ and $x_0=0$.
+
+$$
+\begin{split}
+x_1 &= Ax_0 + w_0 = w_0 \\
+x_2 &= Aw_0 + w_1 \\
+x_3 &= A(Aw_0 + w_1) +w_2\\
+\cdots\\
+\therefore x_i& = \sum_{k=0}^{i-1}A^k w_k
+\end{split}
+
+$$
+
+The set that contains all possible states $x_i$ is
+
+$$F_i = \bigoplus_{k=0}^{i-1}A^k\mathbb W$$
+
+where $\bigoplus$ is Minkowski sums.
+
+**Algorithm**
+![Sample image](imgs/robustmpc3.png "Sample imgs")
+
+:::example
+```pythoon
+def min_robust_invariant_set(A_cl: np.ndarray, W: Polyhedron, max_iter: int = 30) -> Polyhedron:
+	Omega = W
+	i =0
+	while True:
+		A_i = np.linalg.matrix_power(A_cl, i)
+		Omega_next = Omega + A_i@W
+		Omega_next.minHrep()
+
+		if np.linalg.matrix_norm(A_i, ord=2) < 1e-2:
+			break
+		if i > max_iter:
+			print("Warning: max iterations reached in min_robust_invariant_set")
+			break
+		Omega = Omega_next
+		i+=1
+	return Omega
+```
+
+:::
