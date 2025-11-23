@@ -98,7 +98,7 @@ The set that contains all possible states $x_i$ is
 
 $$F_i = \bigoplus_{k=0}^{i-1}A^k\mathbb W$$
 
-where $\bigoplus$ is Minkowski sums.
+where $\bigoplus$ is Minkowski sums. This $F_i$ is equivalent to $\mathcal E$ as $i \rightarrow \infty$. 
 
 **Algorithm**
 ![Sample image](imgs/robustmpc3.png "Sample imgs")
@@ -120,7 +120,8 @@ def min_robust_invariant_set(A_cl: np.ndarray, W: Polyhedron, max_iter: int = 30
 			break
 		Omega = Omega_next
 		i+=1
-	return Omega
+        
+    return Omega
 ```
 :::
 
