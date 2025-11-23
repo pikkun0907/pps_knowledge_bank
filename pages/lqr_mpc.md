@@ -104,7 +104,7 @@ BUT this is infeasible to solve since it contains infinite horizon.
 
 :::theory
 
-Infinite horizon optimal control
+Finite horizon optimal control
 $$
 \begin{split}
 V^*(x_0) &= \min \sum_{i=0}^{N-1} I (x_i,u_i)+V_f(x_N)\\
