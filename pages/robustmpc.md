@@ -130,7 +130,7 @@ In MPC problem, we originally try to get a trajectory of $x$ which is real state
 
 So far we know the set of $x$ and $z$ as $\mathbb X$ and $\mathcal E$.
 
-We want to ensure $z_i\oplus \mathcal E \sube \mathbb X$, which in turns $z_i \in \mathbb X \ominus \mathcal E$.
+We want to ensure $z_i\oplus \mathcal E \subseteq \mathbb X$, which in turns $z_i \in \mathbb X \ominus \mathcal E$.
 
 We also need to consider the set of the inputs $v_i$. We have the controller of $u_i = K(x_i-z_i)+v_i = Ke_i +v_i$.
 
@@ -161,6 +161,12 @@ $$
 
 :::
 
+Once we get the optimum nominal trajectory $\mathbf z$ and the inputs $\mathbf{v}$, we use the  tracking controller $u_i = K(x_i-z_i)+v_i$ for the inputs. 
+
+We can also estimate the state by $x^+ = Ax + Bu + w $.
+
+---
+
 $z_N^TPz_N$: terminal cost. $P$ is gained by solving Roccati Equation. 
 
 Terminal set $\mathcal X_f$: 
@@ -169,11 +175,11 @@ $$z^+ = Az +B\kappa_f(z) = (A+BK)z \in \mathcal X_f~~~\forall z\in \mathcal X_f$
 
 All tightened state and iput constraints are stisfied in $\mathcal X_f$:
 
-$$\mathcal X_f \sube \mathbb X \ominus \mathcal E, \kappa_f(z) \in \mathbb U ~~~\forall z \in \mathcal X_f$$
+$$\mathcal X_f \subseteq \mathbb X \ominus \mathcal E, \kappa_f(z) \in \mathbb U ~~~\forall z \in \mathcal X_f$$
 
 At least the $X_f$ set should satisfy the following constraints:
 
-$$\mathcal X_f \sube \mathbb X\ominus \mathcal E =\tilde{\mathbb  X}= \{z|\tilde{\mathbb  X}.A\cdot z\leq\tilde{\mathbb  X}.b\}$$
+$$\mathcal X_f \subseteq \mathbb X\ominus \mathcal E =\tilde{\mathbb  X}= \{z|\tilde{\mathbb  X}.A\cdot z\leq\tilde{\mathbb  X}.b\}$$
 
 $$\kappa_f(z) = Kz \in \mathbb U = \{u|\mathbb U.A\cdot u \leq \mathbb U.b\} = \{z|\mathbb U.A\cdot Kz\leq\mathbb U.b\}$$
 
@@ -201,11 +207,10 @@ def max_invariant_set(A_cl, X: Polyhedron, max_iter = 30) -> Polyhedron:
 
 
 
-# Compute the terminal set for nominal mpc <- without noise and error, or default terminal set
 X_and_KU = X.intersect(Polyhedron.from_Hrep(U.A@K, U.b))
 Xf = max_invariant_set(A_cl, X_and_KU)
 
-# Compute the terminal set for tube mpc
+
 X_tilde_and_KU_tilde = X_tilde.intersect(Polyhedron.from_Hrep(U_tilde.A@K, U_tilde.b))
 Xf_tilde = max_invariant_set(A_cl, X_tilde_and_KU_tilde)
 ```
