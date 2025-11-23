@@ -21,9 +21,7 @@ where $Q\succeq0$ and $R\succ 0$.
 
 Therefore, we are minimizing the enrgy in the input and output signals. 
 
-### LQR solution Methods
-
-**Dynamic programming**
+### Dynamic programming
 
 :::note
 Pros: Leads to elegant closed-form solution for LQR. Provide a solution when $N \rightarrow \infty$.
@@ -41,6 +39,8 @@ Hirizon of $N$.
 ![Sample image](imgs/lqr2.png "Sample imgs")
 
 
+
+
 #### Infinite horizon LQR
 
 Bellman equation:
@@ -48,3 +48,32 @@ Bellman equation:
 ![Sample image](imgs/lqr3.png "Sample imgs")
 
 ![Sample image](imgs/lqr4.png "Sample imgs")
+
+
+#### Bellman recursion
+```python
+def bellman(N: int)-> list[np.ndarray]:
+    Klist = []
+    H = Q
+    for _ in range(N):
+        K = -(np.linalg.inv(R + B.T@H@B)@B.T@H@A)
+        Klist.append(K)
+        H = Q + A.T@H@A + A.T@H@B@K
+   
+    return Klist[::-1]
+
+```
+
+Usually, you use only `Klist[-1]` for all controll $u =Kx$. This is closed-loop. 
+
+Instead, if you use all `Klist`(You need to inverse the order by [::-1]), the controller becomes open-loop and the behavior is unstable. 
+
+If you set the horizon long enough, you can get good `K`.
+
+Usually you can use package to get the gain `K` of infinite horizon.
+
+```python
+K, H_inf, E = ct.dlqr(A, B ,Q, R)
+K = - K 
+print("Infinite-horizon LQR gain K:\n", K)
+```

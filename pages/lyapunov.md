@@ -12,12 +12,12 @@
 
     平衡点では $V(0)=0$
 
-2. 時間微分が負（減っていく）$V(f(x)) = V(x^+) < V(x)$ が成立する → 
+2. 時間微分が負（減っていく）$V(f(x)) = V(x^+) < V(x)$ が成立する → エネルギーが減っていくので、状態は平衡点に近づく
 
-The basic way of finding the Lyapunov function for the system of $x^+ = Ax$is: 
+The basic way of finding the Lyapunov function for the system of $x^+ = Ax$ is: 
 
 * Define $V(x)  = x^TPx$ where $P \succ 0$
-* Then, find $P$ that satisfies $A^TPA-P \prec -Q, ~\exist Q\succ 0$. 
+* Then, find $P$ that satisfies $A^TPA-P \prec -Q, ~\exists Q\succ 0$. 
 
 This is because the $V(x)$ should satisfy the following:
 
