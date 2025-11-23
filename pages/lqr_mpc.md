@@ -1,4 +1,4 @@
-# LQR vs MPC
+# LQR and MPC
 
 LQR：高速で計算できる、制約のない最適制御の“閉形式解”
 
@@ -66,14 +66,56 @@ def bellman(N: int)-> list[np.ndarray]:
 
 Usually, you use only `Klist[-1]` for all controll $u =Kx$. This is closed-loop. 
 
-Instead, if you use all `Klist`(You need to inverse the order by [::-1]), the controller becomes open-loop and the behavior is unstable. 
+Instead, if you use all `K` in `Klist`(You need to inverse the order by [::-1]), the controller becomes open-loop and the behavior is unstable. 
 
 If you set the horizon long enough, you can get good `K`.
 
 Usually you can use package to get the gain `K` of infinite horizon.
 
 ```python
-K, H_inf, E = ct.dlqr(A, B ,Q, R)
+K, P, E = ct.dlqr(A, B ,Q, R)
 K = - K 
 print("Infinite-horizon LQR gain K:\n", K)
 ```
+
+
+## MPC
+
+The biggest advantage of MPC is we can deal with constraints on top of the LQR settings.
+
+What we want to solve is the following,
+
+:::theory
+
+Infinite horizon optimal control
+$$
+\begin{split}
+V^*(x_0) &= \min \sum_{i=0}^\infty I (x_i,u_i)\\
+s.t. ~~~& x_{i+1} = f(x_i,u_i)\\
+&(x_i,u_i) \in \mathbb X, \mathbb U
+\end{split}
+
+$$
+:::
+
+BUT this is infeasible to solve since it contains infinite horizon.
+
+<mark>Therefore, we should consider the finite horizon problem and the **terminal cost and terminal set** and put it in the formulation.</mark>
+
+:::theory
+
+Infinite horizon optimal control
+$$
+\begin{split}
+V^*(x_0) &= \min \sum_{i=0}^{N-1} I (x_i,u_i)+V_f(x_N)\\
+s.t. ~~~& x_{i+1} = f(x_i,u_i)\\
+&(x_i,u_i) \in \mathbb X, \mathbb U\\
+&x_N \in \mathcal X_f
+\end{split}
+
+$$
+:::
+
+
+
+

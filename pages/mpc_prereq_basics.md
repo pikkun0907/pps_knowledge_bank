@@ -1,4 +1,4 @@
-# Lyapunov, Basics
+# MPC pre-requirement basics
 
 ## Lyapunov function
 
@@ -24,3 +24,15 @@ This is because the $V(x)$ should satisfy the following:
 $$V(x^+) = V(Ax) = x^TA^TPAx \leq V(x) = x^TPx$$
 
 基本このリアプノフ関数を求めるのは困難。
+
+## Convex optimization
+
+[Here](page.html?topic=conv_opt_problem)
+
+## Constrained Minimization: Interior-point Methods
+
+...
+
+## Invariance set 
+
+## Controlled Invariance set
